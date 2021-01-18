@@ -1,0 +1,170 @@
+﻿@model Services.Domain.dishbill.AreaList
+@{
+    ViewBag.Title = "এরিয়া";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row m-t-15">
+    <div class="col-md-12">
+        <div class="col text-center mb-3">
+            <button type="button" class="btn btn-primary" onclick="OpenAreaModel()"><i class="fas fa-plus"></i> &nbsp; নতুন এরিয়া</button>
+        </div>
+        <div class="modal" id="mdlAreaAddModal">
+            <div class="modal-dialog">
+                <div class="modal-content animated fadeInDown">
+                    @using (Ajax.BeginForm("SaveAreaName", "area", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnMessageSuccess", OnFailure = "OnMessageFailure" }, new { id = "frmAddArea" }))
+                    {
+                        <div class="modal-header">
+                            <h4 class="modal-title area_header">নতুন এরিয়া</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(m => m.Id, new { @id = "hdnAreaId", @class = "dummy_empty_area_field" })
+                            @Html.TextBoxFor(m => m.Name, new { @id = "txtAreaName", @class = "form-control dummy_empty_area_field", maxlength = "200", placeholder = "এরিয়ার নাম", @required = "true" })
+                            <div class="invalid-feedback">এরিয়ার নামের ঘরটি পূরণ করুন</div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">বন্ধ করুন</button>
+                            <button type="submit" class="btn btn-primary has-spinner" id="btnSubmitArea" onclick="return SaveAreaName();">সাবমিট</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table_row">
+            <table id="tblAreaList" class="display edgpay-data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>নাম</th>
+                        <th>গ্রাহক</th>
+                        <th>বকেয়া</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>নাম</th>
+                        <th>গ্রাহক</th>
+                        <th>বকেয়া</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="table_loader"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#mdlAreaAddModal').on('hide.bs.modal', function (e) {
+            $("#txtAreaName").val("");
+            $(".invalid-feedback").hide();
+        });
+        LoadAreaDataTableData();
+    });
+
+    function LoadAreaDataTableData() {
+
+        $.ajax({
+            url: $.trim(domainURL + "/area/GetAreaNameList"),
+            method: 'post',
+            dataType: 'json',
+            select: true,
+            success: function (data) {
+                $('#tblAreaList').dataTable({
+                    data: data,
+                    columns: [
+                        { 'data': 'Id' },
+                        { 'data': 'Name' },
+                        { 'data': 'total_grahok' },
+                        { 'data': 'due_grahok' },
+                        {
+                            "className": 'center',
+                            "data": 'Id',
+                            "render": function (data, type, row, meta) {
+
+                                return "<div class=dropdown><button class='btn-data-grid' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-h'></i></button>" +
+                                                "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+                                                "<a class='dropdown-item' href='javascript:void(0)' onclick='DoEditAreaData(" + data + ")'>সম্পাদন করুন</a>" +
+                                                "</div></div>";
+                            }
+                        }
+                    ],
+                    initComplete: function (settings, json) {
+                        $(".table_loader").hide();
+                    }
+                });
+            }
+        });
+
+
+    }
+
+    function OpenAreaModel() {
+        $(".area_header").text("নতুন এরিয়া");
+        $(".dummy_empty_area_field").val("");
+        $('#mdlAreaAddModal').modal('show');
+        $("#txtAreaName").focus();
+    }
+
+    function DoEditAreaData(id) {
+        $.get(domainURL + "/area/GetAreaDetailsByAreaId", { id: id }, function (data) {
+            if (data) {
+                $(".area_header").text("এরিয়া সম্পাদন");
+                $(".dummy_empty_area_field").val("");
+                $("#hdnAreaId").val(data.Id);
+                $("#txtAreaName").val(data.Name);
+                $('#mdlAreaAddModal').modal('show');
+                $("#txtAreaName").focus();
+            }
+        });
+    }
+
+    function SaveAreaName(elem) {
+        var form = $("#frmAddArea");
+
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.addClass('was-validated');
+        
+        if (form[0].checkValidity() === true) {
+            $(".has-spinner").buttonLoader('start', "প্রসেসিং");
+        }
+
+        return form[0].checkValidity();
+    }
+
+    function OnMessageSuccess(e) {
+        $(".has-spinner").buttonLoader('stop');
+        $(".dummy_empty_area_field").val("");
+        $(".table_loader").show();
+        $('#mdlAreaAddModal').modal('hide');
+        var table = $('#tblAreaList').DataTable();
+        table.destroy();
+        LoadAreaDataTableData();
+    }
+
+    function OnMessageFailure() {
+        $(".has-spinner").buttonLoader('stop');
+        $(".dummy_empty_area_field").val("");
+        console.log("Error");
+    }
+
+
+</script>

@@ -1,0 +1,163 @@
+﻿@using Web.AppCode;
+@using Services.Utilities;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from aba.zarko-m.com/preview/Default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 Dec 2019 09:20:43 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="zarko-m">
+    <meta name="description" content="ডিজিপে">
+
+    <title>@ViewBag.Title | ডিজিপে</title>
+
+    <!--Bootstrap v4.3.1-->
+    <link href="@Url.Content("~/css/bootstrap.min.css?v=" + SiteSettings.UploadVersion)" rel="stylesheet">
+
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="@Url.Content("~/css/all.css?v=" + SiteSettings.UploadVersion)">
+    <!--dripicons -->
+    <link href="@Url.Content("~/css/dripicons.css?v=" + SiteSettings.UploadVersion)" rel="stylesheet">
+    <!-- fullcalendar -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/fullcalendar.min.css?v=" + SiteSettings.UploadVersion)">
+    <!-- perfect-scrollbar -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/perfect-scrollbar.css?v=" + SiteSettings.UploadVersion)">
+    <!-- bootstrap-select -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/bootstrap-select.min.css?v=" + SiteSettings.UploadVersion)">
+    <!-- bootstrap-tour -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/bootstrap-tour-standalone.min.css?v=" + SiteSettings.UploadVersion)">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/js/DataTables/datatables.min.css?v=" + SiteSettings.UploadVersion)">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/js/DataTables/select.dataTables.min.css?v=" + SiteSettings.UploadVersion)">
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/style.css?v=" + SiteSettings.UploadVersion)">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/app.custom.css?v=" + SiteSettings.UploadVersion)">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/application.style.css?v=" + SiteSettings.UploadVersion)">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="@Url.Content("~/img/favicon/apple-touch-icon-57x57.html?v=" + SiteSettings.UploadVersion)" />
+    <link rel="apple-touch-icon" sizes="57x57" href="@Url.Content("~/img/favicon/apple-icon-57x57.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="60x60" href="@Url.Content("~/img/favicon/apple-icon-60x60.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="72x72" href="@Url.Content("~/img/favicon/apple-icon-72x72.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="76x76" href="@Url.Content("~/img/favicon/apple-icon-76x76.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="114x114" href="@Url.Content("~/img/favicon/apple-icon-114x114.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="120x120" href="@Url.Content("~/img/favicon/apple-icon-120x120.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="144x144" href="@Url.Content("~/img/favicon/apple-icon-144x144.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="152x152" href="@Url.Content("~/img/favicon/apple-icon-152x152.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="apple-touch-icon" sizes="180x180" href="@Url.Content("~/img/favicon/apple-icon-180x180.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="icon" type="image/png" sizes="192x192" href="@Url.Content("~/img/favicon/android-icon-192x192.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="icon" type="image/png" sizes="32x32" href="@Url.Content("~/img/favicon/favicon-32x32.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="icon" type="image/png" sizes="96x96" href="@Url.Content("~/img/favicon/favicon-96x96.png?v=" + SiteSettings.UploadVersion)">
+    <link rel="icon" type="image/png" sizes="16x16" href="@Url.Content("~/img/favicon/favicon-16x16.png?v=" + SiteSettings.UploadVersion)">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../ms-icon-144x144.html">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <script src="@Url.Content("~/js/jquery-3.4.1.min.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/popper.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/validator/jquery.validate.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/jquery.buttonLoader.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script type="text/javascript">
+        var pathURL = window.location.pathname; // Returns path only (/path/example.html)
+        var pageURL = window.location.href;     // Returns full URL (https://example.com/path/example.html)
+        var domainURL = window.location.origin;   // Returns base URL (https://example.com)
+
+    </script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/DataTables/datatables.min.js?v=" + SiteSettings.UploadVersion)"></script>
+    <!-- perfect-scrollbar -->
+    <script src="@Url.Content("~/js/perfect-scrollbar.min.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/perfect-scrollbar-config.js?v=" + SiteSettings.UploadVersion)"></script>
+    <!-- bootstrap-select -->
+    <script src="@Url.Content("~/js/bootstrap-select.min.js?v=" + SiteSettings.UploadVersion)"></script>
+    <!-- bootstrap-tour -->
+    <script src="@Url.Content("~/js/bootstrap-tour-standalone.min.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/bootstrap-tour-config.js?v=" + SiteSettings.UploadVersion)"></script>
+
+    <!--Custom script -->
+    <script src="@Url.Content("~/js/script.js?v=" + SiteSettings.UploadVersion)"></script>
+    <script src="@Url.Content("~/js/app-config.js?v=" + SiteSettings.UploadVersion)"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="day-mode">
+
+    <header class="edgpay-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="float-left">
+                        <a class="nav-link active" href="~/"><img src="@Url.Content("~/images/logo.png?v=" + SiteSettings.UploadVersion)" alt="DG Pay Logo" class="login-top-logo" /></a>
+                    </div>
+                    <div class="float-right">
+                        <ul class="nav login-nav-right">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/profile/change-pssword">পাসওয়ার্ড পরিবর্তন</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="~/profile">@LoggedInUserInfoFromCookie.UserFirstNameInCookie</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="edgpay-page-body">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+
+    <footer class="edgpay-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="edgpay-footer-menu">
+                        <li class="edgpayd-footer-menu-item">
+                            <a href="~/">
+                                <i class="edgpayd-item-icon fas fa-house-damage"></i>
+                                <span class="edgpayd-item-name">হোম</span>
+                            </a>
+                        </li>
+                        <li class="edgpayd-footer-menu-item">
+                            <a href="~/profile">
+                                <i class="edgpayd-item-icon far fa-id-badge"></i>
+                                <span class="edgpayd-item-name">প্রোফাইল</span>
+                            </a>
+                        </li>
+                        <li class="edgpayd-footer-menu-item">
+                            <a href="social.html">
+                                <i class="edgpayd-item-icon fas fa-question"></i>
+                                <span class="edgpayd-item-name">সাহায্য</span>
+                            </a>
+                        </li>
+                        <li class="edgpayd-footer-menu-item">
+                            <a href="@Url.Action("Logout", "account")">
+                                <i class="edgpayd-item-icon fas fa-power-off"></i>
+                                <span class="edgpayd-item-name">লগআউট</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    @Html.Action("_LoadLiveChatWidget", "home")
+
+</body>
+
+</html>

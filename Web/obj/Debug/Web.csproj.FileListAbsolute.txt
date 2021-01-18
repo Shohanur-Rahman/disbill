@@ -1,0 +1,369 @@
+D:\new-projects\base\Web\Web\bin\ApplicationInsights.config
+D:\new-projects\base\Web\Web\bin\roslyn\csc.exe
+D:\new-projects\base\Web\Web\bin\roslyn\csc.exe.config
+D:\new-projects\base\Web\Web\bin\roslyn\csc.rsp
+D:\new-projects\base\Web\Web\bin\roslyn\csi.exe
+D:\new-projects\base\Web\Web\bin\roslyn\csi.exe.config
+D:\new-projects\base\Web\Web\bin\roslyn\csi.rsp
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\new-projects\base\Web\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.AppContext.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Collections.Immutable.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Console.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Diagnostics.Process.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.IO.Compression.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.IO.FileSystem.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.IO.Pipes.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Security.AccessControl.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Security.Claims.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Security.Principal.Windows.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Threading.Thread.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.ValueTuple.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Xml.XmlDocument.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Xml.XPath.dll
+D:\new-projects\base\Web\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\new-projects\base\Web\Web\bin\roslyn\vbc.exe
+D:\new-projects\base\Web\Web\bin\roslyn\vbc.exe.config
+D:\new-projects\base\Web\Web\bin\roslyn\vbc.rsp
+D:\new-projects\base\Web\Web\bin\roslyn\VBCSCompiler.exe
+D:\new-projects\base\Web\Web\bin\roslyn\VBCSCompiler.exe.config
+D:\new-projects\base\Web\Web\bin\Web.dll.config
+D:\new-projects\base\Web\Web\bin\Web.dll
+D:\new-projects\base\Web\Web\bin\Web.pdb
+D:\new-projects\base\Web\Web\bin\Antlr3.Runtime.dll
+D:\new-projects\base\Web\Web\bin\CommonServiceLocator.dll
+D:\new-projects\base\Web\Web\bin\EntityFramework.dll
+D:\new-projects\base\Web\Web\bin\EntityFramework.SqlServer.dll
+D:\new-projects\base\Web\Web\bin\Kendo.Mvc.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.Web.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.WindowsServer.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.ApplicationInsights.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\new-projects\base\Web\Web\bin\Microsoft.Web.Infrastructure.dll
+D:\new-projects\base\Web\Web\bin\Newtonsoft.Json.dll
+D:\new-projects\base\Web\Web\bin\NReco.PdfGenerator.dll
+D:\new-projects\base\Web\Web\bin\PagedList.dll
+D:\new-projects\base\Web\Web\bin\PagedList.Mvc.dll
+D:\new-projects\base\Web\Web\bin\Services.dll
+D:\new-projects\base\Web\Web\bin\System.Web.Helpers.dll
+D:\new-projects\base\Web\Web\bin\System.Web.Mvc.dll
+D:\new-projects\base\Web\Web\bin\System.Web.Optimization.dll
+D:\new-projects\base\Web\Web\bin\System.Web.Razor.dll
+D:\new-projects\base\Web\Web\bin\System.Web.WebPages.Deployment.dll
+D:\new-projects\base\Web\Web\bin\System.Web.WebPages.dll
+D:\new-projects\base\Web\Web\bin\System.Web.WebPages.Razor.dll
+D:\new-projects\base\Web\Web\bin\Unity.Abstractions.dll
+D:\new-projects\base\Web\Web\bin\Unity.Configuration.dll
+D:\new-projects\base\Web\Web\bin\Unity.Container.dll
+D:\new-projects\base\Web\Web\bin\Unity.Interception.Configuration.dll
+D:\new-projects\base\Web\Web\bin\Unity.Interception.dll
+D:\new-projects\base\Web\Web\bin\Unity.Mvc5.dll
+D:\new-projects\base\Web\Web\bin\Unity.RegistrationByConvention.dll
+D:\new-projects\base\Web\Web\bin\Unity.ServiceLocation.dll
+D:\new-projects\base\Web\Web\bin\WebActivatorEx.dll
+D:\new-projects\base\Web\Web\bin\WebGrease.dll
+D:\new-projects\base\Web\Web\bin\itextsharp.dll
+D:\new-projects\base\Web\Web\bin\Services.pdb
+D:\new-projects\base\Web\Web\bin\CommonServiceLocator.pdb
+D:\new-projects\base\Web\Web\bin\EntityFramework.xml
+D:\new-projects\base\Web\Web\bin\EntityFramework.SqlServer.xml
+D:\new-projects\base\Web\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\new-projects\base\Web\Web\bin\Newtonsoft.Json.xml
+D:\new-projects\base\Web\Web\bin\NReco.PdfGenerator.xml
+D:\new-projects\base\Web\Web\bin\PagedList.xml
+D:\new-projects\base\Web\Web\bin\PagedList.Mvc.xml
+D:\new-projects\base\Web\Web\bin\System.Web.Helpers.xml
+D:\new-projects\base\Web\Web\bin\System.Web.Mvc.xml
+D:\new-projects\base\Web\Web\bin\System.Web.Optimization.xml
+D:\new-projects\base\Web\Web\bin\System.Web.Razor.xml
+D:\new-projects\base\Web\Web\bin\System.Web.WebPages.xml
+D:\new-projects\base\Web\Web\bin\System.Web.WebPages.Deployment.xml
+D:\new-projects\base\Web\Web\bin\System.Web.WebPages.Razor.xml
+D:\new-projects\base\Web\Web\bin\Unity.Abstractions.pdb
+D:\new-projects\base\Web\Web\bin\Unity.Configuration.pdb
+D:\new-projects\base\Web\Web\bin\Unity.Container.pdb
+D:\new-projects\base\Web\Web\bin\Unity.Interception.pdb
+D:\new-projects\base\Web\Web\bin\Unity.Interception.Configuration.pdb
+D:\new-projects\base\Web\Web\bin\Unity.RegistrationByConvention.pdb
+D:\new-projects\base\Web\Web\bin\Unity.ServiceLocation.pdb
+D:\new-projects\base\Web\Web\bin\Antlr3.Runtime.pdb
+D:\new-projects\base\Web\Web\bin\Microsoft.ApplicationInsights.xml
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.WindowsServer.xml
+D:\new-projects\base\Web\Web\bin\Microsoft.AI.Web.xml
+D:\new-projects\base\Web\Web\bin\itextsharp.xml
+D:\new-projects\base\Web\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+D:\new-projects\base\Web\Web\obj\Debug\Web.dll
+D:\new-projects\base\Web\Web\obj\Debug\Web.pdb
+D:\new-projects\DishBill\Web\bin\ApplicationInsights.config
+D:\new-projects\DishBill\Web\bin\roslyn\csc.exe
+D:\new-projects\DishBill\Web\bin\roslyn\csc.exe.config
+D:\new-projects\DishBill\Web\bin\roslyn\csc.rsp
+D:\new-projects\DishBill\Web\bin\roslyn\csi.exe
+D:\new-projects\DishBill\Web\bin\roslyn\csi.exe.config
+D:\new-projects\DishBill\Web\bin\roslyn\csi.rsp
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\new-projects\DishBill\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.AppContext.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Collections.Immutable.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Console.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Diagnostics.Process.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.IO.Compression.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.IO.FileSystem.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.IO.Pipes.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Security.AccessControl.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Security.Claims.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Security.Principal.Windows.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Threading.Thread.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.ValueTuple.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Xml.XmlDocument.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Xml.XPath.dll
+D:\new-projects\DishBill\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\new-projects\DishBill\Web\bin\roslyn\vbc.exe
+D:\new-projects\DishBill\Web\bin\roslyn\vbc.exe.config
+D:\new-projects\DishBill\Web\bin\roslyn\vbc.rsp
+D:\new-projects\DishBill\Web\bin\roslyn\VBCSCompiler.exe
+D:\new-projects\DishBill\Web\bin\roslyn\VBCSCompiler.exe.config
+D:\new-projects\DishBill\Web\bin\Web.dll.config
+D:\new-projects\DishBill\Web\bin\Web.dll
+D:\new-projects\DishBill\Web\bin\Web.pdb
+D:\new-projects\DishBill\Web\bin\Antlr3.Runtime.dll
+D:\new-projects\DishBill\Web\bin\CommonServiceLocator.dll
+D:\new-projects\DishBill\Web\bin\EntityFramework.dll
+D:\new-projects\DishBill\Web\bin\EntityFramework.SqlServer.dll
+D:\new-projects\DishBill\Web\bin\Kendo.Mvc.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.Web.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.WindowsServer.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.ApplicationInsights.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\new-projects\DishBill\Web\bin\Microsoft.Web.Infrastructure.dll
+D:\new-projects\DishBill\Web\bin\Newtonsoft.Json.dll
+D:\new-projects\DishBill\Web\bin\NReco.PdfGenerator.dll
+D:\new-projects\DishBill\Web\bin\PagedList.dll
+D:\new-projects\DishBill\Web\bin\PagedList.Mvc.dll
+D:\new-projects\DishBill\Web\bin\Services.dll
+D:\new-projects\DishBill\Web\bin\System.Web.Helpers.dll
+D:\new-projects\DishBill\Web\bin\System.Web.Mvc.dll
+D:\new-projects\DishBill\Web\bin\System.Web.Optimization.dll
+D:\new-projects\DishBill\Web\bin\System.Web.Razor.dll
+D:\new-projects\DishBill\Web\bin\System.Web.WebPages.Deployment.dll
+D:\new-projects\DishBill\Web\bin\System.Web.WebPages.dll
+D:\new-projects\DishBill\Web\bin\System.Web.WebPages.Razor.dll
+D:\new-projects\DishBill\Web\bin\Unity.Abstractions.dll
+D:\new-projects\DishBill\Web\bin\Unity.Configuration.dll
+D:\new-projects\DishBill\Web\bin\Unity.Container.dll
+D:\new-projects\DishBill\Web\bin\Unity.Interception.Configuration.dll
+D:\new-projects\DishBill\Web\bin\Unity.Interception.dll
+D:\new-projects\DishBill\Web\bin\Unity.Mvc5.dll
+D:\new-projects\DishBill\Web\bin\Unity.RegistrationByConvention.dll
+D:\new-projects\DishBill\Web\bin\Unity.ServiceLocation.dll
+D:\new-projects\DishBill\Web\bin\WebActivatorEx.dll
+D:\new-projects\DishBill\Web\bin\WebGrease.dll
+D:\new-projects\DishBill\Web\bin\itextsharp.dll
+D:\new-projects\DishBill\Web\bin\Services.pdb
+D:\new-projects\DishBill\Web\bin\CommonServiceLocator.pdb
+D:\new-projects\DishBill\Web\bin\EntityFramework.xml
+D:\new-projects\DishBill\Web\bin\EntityFramework.SqlServer.xml
+D:\new-projects\DishBill\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\new-projects\DishBill\Web\bin\Newtonsoft.Json.xml
+D:\new-projects\DishBill\Web\bin\NReco.PdfGenerator.xml
+D:\new-projects\DishBill\Web\bin\PagedList.xml
+D:\new-projects\DishBill\Web\bin\PagedList.Mvc.xml
+D:\new-projects\DishBill\Web\bin\System.Web.Helpers.xml
+D:\new-projects\DishBill\Web\bin\System.Web.Mvc.xml
+D:\new-projects\DishBill\Web\bin\System.Web.Optimization.xml
+D:\new-projects\DishBill\Web\bin\System.Web.Razor.xml
+D:\new-projects\DishBill\Web\bin\System.Web.WebPages.xml
+D:\new-projects\DishBill\Web\bin\System.Web.WebPages.Deployment.xml
+D:\new-projects\DishBill\Web\bin\System.Web.WebPages.Razor.xml
+D:\new-projects\DishBill\Web\bin\Unity.Abstractions.pdb
+D:\new-projects\DishBill\Web\bin\Unity.Configuration.pdb
+D:\new-projects\DishBill\Web\bin\Unity.Container.pdb
+D:\new-projects\DishBill\Web\bin\Unity.Interception.pdb
+D:\new-projects\DishBill\Web\bin\Unity.Interception.Configuration.pdb
+D:\new-projects\DishBill\Web\bin\Unity.RegistrationByConvention.pdb
+D:\new-projects\DishBill\Web\bin\Unity.ServiceLocation.pdb
+D:\new-projects\DishBill\Web\bin\Antlr3.Runtime.pdb
+D:\new-projects\DishBill\Web\bin\Microsoft.ApplicationInsights.xml
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.WindowsServer.xml
+D:\new-projects\DishBill\Web\bin\Microsoft.AI.Web.xml
+D:\new-projects\DishBill\Web\bin\itextsharp.xml
+D:\new-projects\DishBill\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+D:\new-projects\DishBill\Web\obj\Debug\Web.dll
+D:\new-projects\DishBill\Web\obj\Debug\Web.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\ApplicationInsights.config
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\csc.exe
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\csc.exe.config
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\csc.rsp
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\csi.exe
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\csi.exe.config
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\csi.rsp
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.AppContext.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Collections.Immutable.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Console.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Diagnostics.Process.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.IO.Compression.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.IO.FileSystem.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.IO.Pipes.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Reflection.Metadata.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Security.AccessControl.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Security.Claims.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Security.Principal.Windows.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Threading.Thread.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.ValueTuple.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Xml.XmlDocument.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Xml.XPath.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\vbc.exe
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\vbc.exe.config
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\vbc.rsp
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\VBCSCompiler.exe
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\roslyn\VBCSCompiler.exe.config
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Web.dll.config
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Web.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Web.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Antlr3.Runtime.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\CommonServiceLocator.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\EntityFramework.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\EntityFramework.SqlServer.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Kendo.Mvc.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.Agent.Intercept.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.DependencyCollector.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.Web.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.WindowsServer.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.ApplicationInsights.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.Web.Infrastructure.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Newtonsoft.Json.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\NReco.PdfGenerator.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\PagedList.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\PagedList.Mvc.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Services.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Helpers.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Mvc.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Optimization.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Razor.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.WebPages.Deployment.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.WebPages.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.WebPages.Razor.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Abstractions.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Configuration.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Container.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Interception.Configuration.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Interception.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Mvc5.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.RegistrationByConvention.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.ServiceLocation.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\WebActivatorEx.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\WebGrease.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\itextsharp.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Services.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Services.dll.config
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\CommonServiceLocator.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\EntityFramework.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\EntityFramework.SqlServer.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Newtonsoft.Json.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\NReco.PdfGenerator.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\PagedList.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\PagedList.Mvc.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Helpers.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Mvc.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Optimization.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.Razor.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.WebPages.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.WebPages.Deployment.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\System.Web.WebPages.Razor.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Abstractions.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Configuration.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Container.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Interception.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.Interception.Configuration.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.RegistrationByConvention.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Unity.ServiceLocation.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Antlr3.Runtime.pdb
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.ApplicationInsights.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.DependencyCollector.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.WindowsServer.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\Microsoft.AI.Web.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\bin\itextsharp.xml
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Debug\Web.csprojAssemblyReference.cache
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Debug\Web.csproj.CopyComplete
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Debug\Web.dll
+F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Debug\Web.pdb

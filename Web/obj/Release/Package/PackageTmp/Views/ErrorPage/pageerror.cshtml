@@ -1,0 +1,32 @@
+﻿@using Services.Helper;
+@{
+    ViewData["Title"] = "Coding Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="main-container col2-left-layout">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 page-404" style="margin-top:15%">
+                <div class="number font-green"> 404 </div>
+                <div class="details">
+                    <h3>Oops! You're lost.</h3>
+                    <p>
+                        We can not find the page you're looking for.
+                    </p>
+                    <p>
+                        @using (Html.BeginForm("RedirectToDashboard", "Home", FormMethod.Post, new { role = "form", @autocomplete = "off" }))
+                        {
+                            <a href="~/login" class="btn grey-salsa btn-outline " style="width: 134px;">Contact Us</a>
+
+                        }
+                        <br />
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Authorization Required";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="main-container col2-left-layout">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 page-404" style="margin-top:15%">
+                <div class="number font-green"> 401 </div>
+                <div class="details">
+                    <h3>Oops! Authorization Required.</h3>
+
+                    <p>
+                        @using (Html.BeginForm("RedirectToDashboard", "Home", FormMethod.Post, new { role = "form", @autocomplete = "off" }))
+                        {
+                            <button type="submit" class="btn btn green btn-outline"> Return to Home </button>
+                        }
+                        <br />
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>

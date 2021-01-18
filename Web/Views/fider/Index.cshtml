@@ -1,0 +1,288 @@
+﻿@model Services.Domain.User
+@{
+    ViewBag.Title = "ফিডার";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row m-t-15">
+    <div class="col-md-12">
+        <div class="col text-center mb-3">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdlManagerAddModal"><i class="fas fa-plus"></i> &nbsp; নতুন ফিডার</button>
+        </div>
+        <div class="modal" id="mdlManagerAddModal">
+            <div class="modal-dialog">
+                <div class="modal-content animated fadeInDown">
+                    @using (Ajax.BeginForm("SaveFiderInformation", "fider", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnMessageSuccess", OnFailure = "OnMessageFailure" }, new { id = "frmAddManager" }))
+                    {
+                        <div class="modal-header">
+                            <h4 class="modal-title">ফিডার নিবন্ধন</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+
+                            @Html.ValidationSummary(true)
+                            <div class="form-group">
+                                <div class="dummy_customErrorMessage"></div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Name, new { @id = "txtManagerName", @class = "form-control", maxlength = "200", placeholder = "নাম", @title = "নাম", @required = "true" })
+                                <div class="invalid-feedback">নামের ঘরটি পূরণ করুন</div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.MobileNumber, new { @id = "txtMobileNumber", @class = "form-control", maxlength = "11", placeholder = "মোবাইল নাম্বার", @title = "মোবাইল নাম্বার", pattern = "[0-9]{11}", @required = "true" })
+                                <div class="invalid-feedback">মোবাইল নাম্বরের ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.CompanySignature, new { @id = "txtReferenceMobile", @class = "form-control", maxlength = "200", placeholder = "কোম্পানীর নাম", @title = "কোম্পানীর নাম", @required = "true" })
+                                <div class="invalid-feedback">কোম্পানীর নাম লিখুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.ComplainNumber, new { @id = "txtComplainNumber", @class = "form-control", maxlength = "200", placeholder = "অভিযোগ নাম্বার", @title = "অভিযোগ নাম্বার", pattern = "[0-9]{11}", @required = "true" })
+                                <div class="invalid-feedback">অভিযোগ নাম্বরের ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Email, new { @id = "txtEmail", @type = "email", @class = "form-control", maxlength = "200", placeholder = "ইমেল", @title = "ইমেল", @required = "true" })
+                                <div class="invalid-feedback">ইমেইলের ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.House, new { @id = "txtHouse", @class = "form-control", maxlength = "200", placeholder = "বাড়ি নং/মহল্লা", @title = "বাড়ি নং/মহল্লা", @required = "true" })
+                                <div class="invalid-feedback">বাড়ি নং/মহল্লা ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Road, new { @id = "txtRoad", @class = "form-control", maxlength = "200", placeholder = "রোড নং/গ্রাম", @title = "রোড নং/গ্রাম", @required = "true" })
+                                <div class="invalid-feedback">রোড নং/গ্রাম ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.PostOffice, new { @id = "txtPostOffice", @class = "form-control", maxlength = "200", placeholder = "পোস্ট অফিস", @title = "পোস্ট অফিস", @required = "true" })
+                                <div class="invalid-feedback">পোস্ট অফিস ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Thana, new { @id = "txtThana", @class = "form-control", maxlength = "200", placeholder = "থানা/উপজেলা", @title = "থানা/উপজেলা", @required = "true" })
+                                <div class="invalid-feedback">থানা/উপজেলা ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Zila, new { @id = "txtZila", @class = "form-control", maxlength = "200", placeholder = "জেলা", @title = "জেলা", @required = "true" })
+                                <div class="invalid-feedback">জেলা ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.NIDNo, new { @id = "txtNIDNo", @class = "form-control", maxlength = "200", placeholder = "জাতীয় পরিচয় পত্র নং", @title = "জাতীয় পরিচয় পত্র নং", @required = "true" })
+                                <div class="invalid-feedback">জাতীয় পরিচয় পত্র নং ঘরটি পূরণ করুন</div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.ReferenceName, new { @id = "txtReferenceName", @class = "form-control", maxlength = "200", placeholder = "রেফারেন্সের নাম", @title = "রেফারেন্সের নাম" })
+                                @*<div class="invalid-feedback">রেফারেন্সের নাম ঘরটি পূরণ করুন</div>*@
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.ReferenceMobile, new { @id = "txtReferenceMobile", @class = "form-control", maxlength = "200", placeholder = "রেফারেন্সের মোবাইল", @title = "রেফারেন্সের মোবাইল" })
+                                @*<div class="invalid-feedback">রেফারেন্সের মোবাইল ঘরটি পূরণ করুন</div>*@
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">বন্ধ করুন</button>
+                            <button type="submit" class="btn btn-primary has-spinner" id="btnSubmitArea" onclick="return SaveAreaName();">সাবমিট</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table_row">
+            <table id="tblManagerList" class="display edgpay-data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>নাম</th>
+                        <th>মোবাইল</th>
+                        <th>ইমেল</th>
+                        <th>বাড়ি</th>
+                        <th>রোড</th>
+                        <th>পোস্ট</th>
+                        <th>অনুমোদিত</th>
+                        <th>সক্রিয়</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>নাম</th>
+                        <th>মোবাইল</th>
+                        <th>ইমেল</th>
+                        <th>বাড়ি</th>
+                        <th>রোড</th>
+                        <th>পোস্ট</th>
+                        <th>অনুমোদিত</th>
+                        <th>সক্রিয়</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="table_loader"></div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#mdlManagerAddModal').on('hide.bs.modal', function (e) {
+            $("form#frmAddManager")[0].reset();
+            $(".invalid-feedback").hide();
+        });
+        LoadAreaDataTableData();
+    });
+
+    function LoadAreaDataTableData() {
+
+        $.ajax({
+            url: $.trim(domainURL + "/fider/SuperAdminGetFiderList"),
+            method: 'GET',
+            dataType: 'json',
+            select: true,
+            success: function (data) {
+                var roleId = "@ViewBag.UserRoleId";
+                $('#tblManagerList').dataTable({
+                    data: data,
+                    columns: [
+                        { 'data': 'Id' },
+                        { 'data': 'Name' },
+                        { 'data': 'MobileNumber' },
+                        { 'data': 'Email' },
+                        { 'data': 'House' },
+                        { 'data': 'Road' },
+                        { 'data': 'PostOffice' },
+                        { 'data': 'IsAdminApproved' },
+                        { 'data': 'IsActivated' },
+                        {
+                            "className": 'center',
+                            "data": 'Id',
+                            "render": function (data, type, row, meta) {
+                                if (roleId == 1 || roleId == 2) {
+                                    if (row.IsActivated) {
+                                        return "<div class=dropdown><button class='btn-data-grid' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-h'></i></button>" +
+                                               "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+                                               "<a class='dropdown-item' href='javascript:void(0)' onclick='DeDeactiveSelectedManager(" + data + ")'>বন্ধ করুন</a>" +
+                                               "</div></div>";
+                                    } else {
+                                        return "<div class=dropdown><button class='btn-data-grid' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-h'></i></button>" +
+                                               "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+                                               "<a class='dropdown-item' href='javascript:void(0)' onclick='DeActiveSelectedManager(" + data + ")'>সক্রিয় করুন</a>" +
+                                               "</div></div>";
+                                    }
+                                } else {
+                                    return "Permission not allow";
+                                }
+                                
+                            }
+                        },
+
+                    ],
+                    rowCallback: function (row, data, index) {
+                        if (data.IsAdminApproved == true) {
+                            $("td:eq(7)", row).html("<i class='fas fa-check icon-green'></i>");
+                        } else {
+                            $("td:eq(7)", row).html("<i class='fas fa-times icon-red'></i>");
+                        }
+                        if (data.IsActivated == true) {
+                            $("td:eq(8)", row).html("<i class='fas fa-check icon-green'></i>");
+                        } else {
+                            $("td:eq(8)", row).html("<i class='fas fa-times icon-red'></i>");
+                        }
+                    },
+                    initComplete: function(settings, json) {
+                        $(".table_loader").hide();
+                    }
+
+                });
+
+
+            }
+        });
+    }
+
+
+    function DeDeactiveSelectedManager(managerId) {
+        $(".table_loader").show();
+        $.get(domainURL + "/manager/DeDeactiveSelectedManager", { managerId: managerId }, function (data) {
+            if (data) {
+                var table = $('#tblManagerList').DataTable();
+                table.destroy();
+                LoadAreaDataTableData();
+            }
+        });
+    }
+
+
+    function DeActiveSelectedManager(managerId) {
+        $(".table_loader").show();
+        $.get(domainURL + "/manager/DeActiveSelectedManager", { managerId: managerId }, function (data) {
+            if (data) {
+                var table = $('#tblManagerList').DataTable();
+                table.destroy();
+                LoadAreaDataTableData();
+            }
+        });
+    }
+
+    function SaveAreaName(elem) {
+        var form = $("#frmAddManager");
+        var mobileNumber = $.trim($("#txtMobileNumber").val());
+        var emailAddress = $.trim($("#txtEmail").val());
+
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.addClass('was-validated');
+        if (ValidateBDMobile(mobileNumber) == false) {
+            $(".dummy_customErrorMessage").text("Invalid mobile number");
+            $(".dummy_customErrorMessage").show();
+            return false;
+        }
+        if (ValidateEmail(emailAddress) == false) {
+            $(".dummy_customErrorMessage").text("Please Enter a valid email.");
+            $(".dummy_customErrorMessage").show();
+            return false;
+        }
+
+        if (form[0].checkValidity() === true) {
+            $(".has-spinner").buttonLoader('start', "প্রসেসিং");
+        }
+
+        return form[0].checkValidity();
+    }
+
+    function OnMessageSuccess(event) {
+
+        if (event.isOperationSuccess == false) {
+            $(".dummy_customErrorMessage").text(event.OperationMessage);
+            $(".dummy_customErrorMessage").show();
+            return false;
+        } else {
+            $(".table_loader").show();
+            $('#mdlManagerAddModal').modal('hide');
+            var table = $('#tblManagerList').DataTable();
+            table.destroy();
+            LoadAreaDataTableData();
+        }
+
+    }
+
+    function OnMessageFailure(error) {
+        $(".dummy_customErrorMessage").text(error);
+        $(".dummy_customErrorMessage").show();
+        return false;
+    }
+
+
+</script>

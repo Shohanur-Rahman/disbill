@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "কালেকশন";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h3 class="dark-green-color pb-2">কালেকশন সামারি </h3>
+        <h4 class="red-color">
+            মোট বিল: @ViewBag.Summary.total_amount টাকা,
+            আদায়: @ViewBag.Summary.total_collection টাকা,
+            @{
+                string sign = ViewBag.Summary.due_amount.ToString().Substring(0, 1);
+                if (sign == "-")
+                {
+                    <span>অগ্রিম:  @ViewBag.Summary.due_amount </span>
+                }
+                else
+                {
+                    <span>বকেয়া: @ViewBag.Summary.due_amount টাকা,</span>
+                }
+            }
+        
+            
+
+        </h4>
+        <h5 class="dark-green-color">নিজে আদায়: @ViewBag.Summary.fider_collection টাকা, ম্যানেজার আদায়: @ViewBag.Summary.manager_collection টাকা, কালেক্টর: @ViewBag.Summary.collector_collection টাকা</h5>
+        <h6 class="dark-green-color">ডিজিপে টিম আপনার সর্বাত্বক সহযোগিতায় বদ্ধপরিকর</h6>
+    </div>
+</div>
+
+<div class="row pt-5">
+    <div class="col-md-12 text-center">
+        <h3 class="dark-green-color pb-2">ম্যানেজার কালেকশন</h3>
+        <h4 class="red-color"> আদায়: @ViewBag.Summary.manager_collection টাকা</h4>
+    </div>
+</div>
+<div class="row pt-5">
+    <div class="col-md-12 text-center">
+        <h3 class="dark-green-color pb-2">কালেক্টর কালেকশন</h3>
+        <h4 class="red-color"> আদায়: @ViewBag.Summary.collector_collection টাকা</h4>
+    </div>
+</div>
+
+

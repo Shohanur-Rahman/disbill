@@ -1,0 +1,176 @@
+﻿@model Services.Domain.dishbill.BillPaidAPIModel
+@{
+    ViewBag.Title = "বিল জমা";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.UserRoleId == 3 || ViewBag.UserRoleId == 4)
+{
+    <div class="row m-t-15">
+        <div class="col-md-12">
+
+            <div class="col text-center mb-3">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdlPaidBill"><i class="fas fa-plus"></i> &nbsp; জমা দিন</button>
+            </div>
+
+            <div class="modal" id="mdlPaidBill">
+                <div class="modal-dialog">
+                    <div class="modal-content animated fadeInDown">
+                        @using (Ajax.BeginForm("PaidAmountToManagerAndFider", "paid", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnMessageSuccess", OnFailure = "OnMessageFailure" }, new { id = "frmAddArea" }))
+                        {
+                            <div class="modal-header">
+                                <h4 class="modal-title">টাকা জমা দিন</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                @Html.ValidationSummary(true)
+                                @Html.TextBoxFor(m => m.CollectedBill, new { @id = "txtCollectedBill", @class = "form-control dummy_bill_paid", maxlength = "200", placeholder = "টাকা জমা", @required = "true" })
+                                <div class="invalid-feedback">টাকা জমার ঘর পূরণ করুন</div>
+                            </div>
+                            <div class="modal-body">
+                                @Html.TextBoxFor(m => m.DueAmount, new { @id = "txtDueAmount", @class = "form-control dummy_bill_paid", maxlength = "200", placeholder = "বাকি টাকা", @required = "true" })
+                                <div class="invalid-feedback">বাকি টাকার ঘর পূরণ করুন</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">বন্ধ করুন</button>
+                                <button type="submit" class="btn btn-primary" id="btnSubmitArea">সাবমিট</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                @if (ViewBag.UserRoleId != 2)
+                {
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">জমা</a>
+                }
+
+                @if (ViewBag.UserRoleId != 4)
+                {
+                    var className = "";
+                    if (ViewBag.UserRoleId == 2)
+                    {
+                        className = "active";
+                    }
+                    <a class="nav-item nav-link @className" id="nav-free-grahok-tab" data-toggle="tab" href="#nav-free-grahok" role="tab" aria-controls="nav-free-grahok" aria-selected="true">কালেকশন</a>
+                }
+
+            </div>
+        </nav>
+
+
+        <div class="tab-content py-3 px-3 px-sm-0 col-md-12" id="nav-tabContent">
+            @if (ViewBag.UserRoleId != 2)
+            {
+                <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="col-md-12 col-xs-12">
+                        <table id="tblMyPaidBill" class="display edgpay-data-table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>জমা</th>
+                                    <th>বকেয়া</th>
+                                    <th>তারিখ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.MyPaidBill != null && ViewBag.MyPaidBill.Count > 0)
+                                {
+                                    for (int i = 0; i < ViewBag.MyPaidBill.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>@ViewBag.MyPaidBill[i].CollectedBill</td>
+                                            <td>@ViewBag.MyPaidBill[i].DueAmount</td>
+                                            <td>@ViewBag.MyPaidBill[i].PayDate</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>জমা</th>
+                                    <th>বকেয়া</th>
+                                    <th>তারিখ</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+            }
+
+            @if (ViewBag.UserRoleId != 4)
+            {
+                var className = "";
+                if (ViewBag.UserRoleId == 2)
+                {
+                    className = "show active";
+                }
+                <div class="tab-pane @className" id="nav-free-grahok" role="tabpanel" aria-labelledby="nav-free-grahok-tab">
+                    <div class="col-md-12 col-xs-12">
+                        <table id="tblMyPaidBill" class="display edgpay-data-table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>জমা</th>
+                                    <th>বকেয়া</th>
+                                    <th>তারিখ</th>
+                                    <th>জমা দানকারী </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.MyReceivedBill != null && ViewBag.MyReceivedBill.Count > 0)
+                                {
+                                    for (int i = 0; i < ViewBag.MyReceivedBill.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>@ViewBag.MyReceivedBill[i].CollectedBill</td>
+                                            <td>@ViewBag.MyReceivedBill[i].DueAmount</td>
+                                            <td>@ViewBag.MyReceivedBill[i].PayDate</td>
+                                            <td>@ViewBag.MyReceivedBill[i].PaydName</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>জমা</th>
+                                    <th>বকেয়া</th>
+                                    <th>তারিখ</th>
+                                    <th>জমা দানকারী </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#tblMyPaidBill').dataTable();
+    });
+
+    function OnMessageSuccess() {
+        $(".dummy_bill_paid").val("");
+        $("#mdlPaidBill").modal('hide');
+    }
+
+    function OnMessageFailure() {
+
+
+    }
+
+</script>

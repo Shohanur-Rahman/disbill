@@ -1,0 +1,339 @@
+﻿
+@{
+    ViewBag.Title = "সক্রিয় গ্রাহক";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <a class="nav-link back-link" href="~/grahok"><i class="fas fa-fast-backward"></i>&nbsp;গ্রাহক</a>
+    </div>
+    <div class="col-md-12">
+        <span class="dummy_sms_sent_message" style="display: none; background: orange; color: #fff; text-align: center;"></span>
+    </div>
+</div>
+
+<div class="row m-t-15">
+    <div class="col-md-12">
+        <div class="overflow-hidden mb-3">
+            <div class="form-group">
+                @Html.DropDownList("ddlAreaForFilterGrahok",
+                    ViewBag.AreNameList as SelectList,
+                    "-- এরিয়া সিলেক্ট করুন--",
+                    new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table_row">
+            <table id="tblFreeGrahokList" class="display edgpay-data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>আইডি</th>
+                        <th>নাম</th>
+                        <th>এরিয়া</th>
+                        <th>বাড়ীওয়ালার নাম</th>
+                        <th>মোবাইল</th>
+                        <th>TV</th>
+                        <th>মাসিক ফি</th>
+                        <th>বকেয়া</th>
+                        <th>অগ্রিম</th>
+                        <th>মোট</th>
+                        <th>সক্রিয়</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th>আইডি</th>
+                        <th>নাম</th>
+                        <th>এরিয়া</th>
+                        <th>বাড়ীওয়ালার নাম</th>
+                        <th>মোবাইল</th>
+                        <th>TV</th>
+                        <th>মাসিক ফি</th>
+                        <th>বকেয়া</th>
+                        <th>অগ্রিম</th>
+                        <th>মোট</th>
+                        <th>সক্রিয়</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="table_loader"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal" tabindex="-1" role="dialog" id="mdlCollectorProfile">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header profile-modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body profile-modal">
+                        <div class="w-100">
+                            <span class="colletor_avatar"><i class="fas fa-user-tie fa-5x"></i></span>
+                        </div>
+                        <div class="dummy_user_profile_Text_content text-center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("~/Views/Partial/SMSPartial.cshtml")
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#mdlManagerAddModal').on('hide.bs.modal', function (e) {
+            $("#hdnUserId").val("");
+            $("form#frmAddManager")[0].reset();
+            $("#tltManagerModelTitle").text("নতুন গ্রাহক");
+            $(".invalid-feedback").hide();
+            $("#txtMobileNumber").prop('disabled', false);
+        });
+        $('#mdlCollectorProfile').on('hide.bs.modal', function (e) {
+            $(".dummy_user_profile_Text_content").html("");
+        });
+        LoadAreaDataTableData();
+
+
+        $("#ddlAreaForFilterGrahok").change(function () {
+            oTable = $('#tblFreeGrahokList').DataTable();
+            if ($("#ddlAreaForFilterGrahok option:selected").val() != "") {
+                oTable.search($("#ddlAreaForFilterGrahok option:selected").text()).draw();
+            } else {
+                $(".dataTables_filter [type=search]").val("");
+                oTable.search("").draw();
+            }
+        });
+    });
+
+    function LoadAreaDataTableData() {
+
+        $.ajax({
+            url: $.trim(domainURL + "/grahok/ManagerGetAllActiveGrahok"),
+            method: 'GET',
+            dataType: 'json',
+            select: true,
+            success: function (data) {
+                $('#tblFreeGrahokList').dataTable({
+                    data: data,
+                    columns: [
+                        { 'data': 'GrahokId' },
+                        { 'data': 'Name' },
+                        { 'data': 'AreaName' },
+                        { 'data': 'HouseOwnerName' },
+                        { 'data': 'MobileNumber' },
+                        { 'data': 'NumberOfTV' },
+                        { 'data': 'LineRate' },
+                        { 'data': 'total_due' },
+                        { 'data': 'AdvanceAmount' },
+                        { 'data': 'TotalAmount' },
+                        { 'data': 'IsActivated' },
+                        {
+                            "className": 'center',
+                            "data": 'Id',
+                            "render": function (data, type, row, meta) {
+                                if (row.IsActivated) {
+                                    return "<div class=dropdown><button class='btn-data-grid' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-h'></i></button>" +
+                                               "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+                                               "<a class='dropdown-item' href='javascript:void(0)' onclick='ViewCollectorProfile(" + data + ")'>প্রোফাইল দেখুন</a>" +
+                                        "<a class='dropdown-item' href='javascript:void(0)' onclick='OpenSMSModal(" + data + ")'>SMS করুন</a>" +
+                                        "<a class='dropdown-item' href='javascript:void(0)' onclick='DeDeactiveSelectedGrahok(" + data + ")'>বন্ধ করুন</a>" +
+                                               "</div></div>";
+                                } else {
+                                    return "<div class=dropdown><button class='btn-data-grid' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-h'></i></button>" +
+                                               "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>" +
+                                               "<a class='dropdown-item' href='javascript:void(0)' onclick='ViewCollectorProfile(" + data + ")'>প্রোফাইল দেখুন</a>" +
+                                        "<a class='dropdown-item' href='javascript:void(0)' onclick='OpenSMSModal(" + data + ")'>SMS করুন</a>" +
+                                        "<a class='dropdown-item' href='javascript:void(0)' onclick='DeActiveSelectedGrahok(" + data + ")'>সক্রিয় করুন</a>" +
+                                               "</div></div>";
+
+                                }
+                            }
+                        },
+
+                    ],
+                    rowCallback: function (row, data, index) {
+                        if (data.IsActivated == true) {
+                            $("td:eq(10)", row).html("<i class='fas fa-check icon-green'></i>");
+                        } else {
+                            $("td:eq(10)", row).html("<i class='fas fa-times icon-red'></i>");
+                        }
+                    },
+                    initComplete: function (settings, json) {
+                        $(".table_loader").hide();
+                    }
+
+                });
+
+
+            }
+        });
+    }
+
+
+    function OpenSMSModal(uId) {
+        $(".dummy_sms_clear").val("");
+        $("#dummy_SMS_Grahok_Id").val(uId);
+        $("#mdlSmsModal").modal("show");
+    }
+
+
+    function ViewCollectorProfile(cltId) {
+        $.get(domainURL + "/grahok/GetGrahokDetailsByGrahokId", { grahokId: cltId }, function (grData) {
+            if (grData) {
+                console.log(grData);
+                var profileText = "";
+
+                if (grData.Name)
+                    profileText = "<h4 class='text-center'>" + grData.Name + "<h4>";
+
+                profileText += "<p>";
+
+                if (grData.CompanyName)
+                    profileText += grData.CompanyName + "<br/>";
+
+                if (grData.MobileNumber)
+                    profileText += "মোবাইলঃ " + grData.MobileNumber + "<br/>";
+
+                if (grData.LineRate != null)
+                    profileText += "মাসিক ফিঃ " + grData.LineRate + " টাকা<br/>";
+
+                if (grData.DueAmount != null)
+                    profileText += "বকেয়াঃ " + grData.DueAmount + " টাকা<br/>";
+
+                if (grData.House)
+                    profileText += grData.House + ", ";
+
+                if (grData.Road)
+                    profileText += grData.Road + ", ";
+
+                if (grData.PostOffice)
+                    profileText += grData.PostOffice + ", ";
+
+                if (grData.Thana)
+                    profileText += grData.Thana + ", ";
+
+                if (grData.Zila)
+                    profileText += grData.Zila + ", ";
+
+                var date = new Date(parseInt(grData.CreatedDate.substr(6)));
+
+                var formatted = date.getFullYear() + "-" +
+                      ("0" + (date.getMonth() + 1)).slice(-2) + "-" +
+                      ("0" + date.getDate()).slice(-2);
+
+                if (formatted)
+                    profileText += "<br/> <br/> সংযোগ তারিখঃ " + formatted + "<br/>  ";
+
+
+                profileText += "</p>";
+
+                $(".dummy_user_profile_Text_content").html(profileText);
+                $("#mdlCollectorProfile").modal("show");
+            }
+        });
+
+
+    }
+
+
+    function DeDeactiveSelectedGrahok(grahokId) {
+        $(".table_loader").show();
+        $.get(domainURL + "/grahok/DeDeactiveSelectedGrahok", { grahokId: grahokId }, function (data) {
+            if (data) {
+                var table = $('#tblFreeGrahokList').DataTable();
+                table.destroy();
+                LoadAreaDataTableData();
+            }
+        });
+    }
+
+
+    function DeActiveSelectedGrahok(grahokId) {
+        $(".table_loader").show();
+        $.get(domainURL + "/grahok/DeActiveSelectedGrahok", { grahokId: grahokId }, function (data) {
+            if (data) {
+                var table = $('#tblFreeGrahokList').DataTable();
+                table.destroy();
+                LoadAreaDataTableData();
+            }
+        });
+    }
+
+    function SaveAreaName(elem) {
+        var form = $("#frmAddManager");
+        var mobileNumber = $.trim($("#txtMobileNumber").val());
+        var emailAddress = $.trim($("#txtEmail").val());
+
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.addClass('was-validated');
+        if ($("#ddlAreaNameList").val() == "1") {
+            $(".dummy_customErrorMessage").text("এরিয়া সিলেক্ট করুন");
+            $(".dummy_customErrorMessage").show();
+            return false;
+        }
+        if (ValidateBDMobile(mobileNumber) == false) {
+            $(".dummy_customErrorMessage").text("Invalid mobile number");
+            $(".dummy_customErrorMessage").show();
+            return false;
+        }
+        if (emailAddress != "" && ValidateEmail(emailAddress) == false) {
+            $(".dummy_customErrorMessage").text("Please Enter a valid email.");
+            $(".dummy_customErrorMessage").show();
+            return false;
+        }
+
+
+        //$.get("/common/GetUserListByMobileNumber", { mobileNumber: mobileNumber }, function (data) {
+
+        //});
+
+        return form[0].checkValidity();
+    }
+
+    function OnMessageSuccess(event) {
+
+        if (event.isOperationSuccess == false) {
+            $(".dummy_customErrorMessage").text(event.OperationMessage);
+            $(".dummy_customErrorMessage").show();
+            return false;
+        } else {
+            $(".table_loader").show();
+            $('#mdlManagerAddModal').modal('hide');
+            var table = $('#tblFreeGrahokList').DataTable();
+            table.destroy();
+            LoadAreaDataTableData();
+        }
+
+    }
+
+    function OnMessageFailure(error) {
+        $(".dummy_customErrorMessage").text(error);
+        $(".dummy_customErrorMessage").show();
+        return false;
+    }
+
+
+</script>
+

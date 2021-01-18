@@ -1,0 +1,74 @@
+﻿@model Services.Domain.Admin.LiveChatMessages
+
+@if (ViewBag.YourId == null && ViewBag.UserRoleId > 2)
+{
+    <button class="open-button" onclick="openForm()">
+        <i class="fas fa-comment-dots" aria-hidden="true"></i>
+    </button>
+
+        <div class="chat-popup" id="myForm">
+            <div class="form-container">
+                <h1>Live Chat</h1>
+                <div class="messages" id="LiveChatMessage">
+                </div>
+                @using (Ajax.BeginForm("SaveLiveChatMessages", "LiveChatMessages", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnLiveChatSendSuccess", OnFailure = "OnLiveMessageSendFail" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.TextAreaFor(m => m.User_Message, new { maxlength = "1000", placeholder = "Type message.." })
+                    @Html.ValidationMessageFor(m => m.User_Message)
+                    <button type="submit" class="btn">Send</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                }
+            </div>
+
+        </div>
+
+        <script>
+            function openForm() {
+                $("#myForm").show(600);
+
+            }
+
+            function closeForm() {
+                $("#myForm").hide(400);
+            }
+        </script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                console.log('@ViewBag.ReciverId');
+                setInterval(GetMyLiveMessages, 1000);
+            });
+
+            function OnLiveChatSendSuccess() {
+                $("#User_Message").val("");
+            }
+
+            function OnLiveMessageSendFail() {
+                alert("Error occured on chat");
+            }
+
+
+            function GetMyLiveMessages() {
+                $.get("/LiveChatMessages/GetLiveChatMessagesByIpAddress", { receiverId: @ViewBag.ReciverId }, function (data) {
+                    //debugger;
+                    $("#LiveChatMessage").empty();
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].ReaderId != null) {
+                            var messageContent = "<div class='single_message'><div class='admin_avatar'><img src='" + domainURL + "/images/admin_avatar.png' /></div>" +
+                        "<div class='admin_meesage'><p>" + data[i].ReplyMessage + "</p></div></div>";
+                            $("#LiveChatMessage").append(messageContent);
+                        } else {
+                            var messageContent = "<div class='single_message'> <div class='user_meesage'><p>" + data[i].User_Message + "</p> </div></div>";
+                            $("#LiveChatMessage").append(messageContent);
+                        }
+                    }
+                });
+            }
+        </script>
+
+
+}
+
+

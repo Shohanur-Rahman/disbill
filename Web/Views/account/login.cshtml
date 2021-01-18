@@ -1,0 +1,101 @@
+﻿@using Services.Domain.Models.User.EditorModel
+@model LoginModel
+@{
+    ViewBag.Title = "Login to EDGPay";
+    Layout = "~/Views/Shared/_BeforLoginLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="login-container">
+
+            @using (Ajax.BeginForm("DoLogin", "account", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnMessageSuccess", OnFailure = "OnMessageFailure" }, new { id = "frmLogin" }))
+            {
+                <div class="form-group">
+                    <img src="~/images/logo.png" alt="DG Pay Logo" class="login-logo" />
+                </div>
+                <div class="alert alert-danger" id="altLoginAlert" role="alert" style="display: none;">
+                    <span class="dummy_LoginAlertMessage"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="frm-label" for="txtUserName">মোবাইল</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-secret"></i></div>
+                        </div>
+                        @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control required-entry", @id = "txtUserName", title = "Mobile number", @value = "", @data_validation = "mobile", @required = "true" })
+                        <div class="invalid-feedback">মোবাইল নাম্বার দিন</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="frm-label" for="txtPassword">পাসওয়ার্ড</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-lock-open"></i></div>
+                        </div>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control required-entry validate-password", title = "Password", @id = "txtPassword", @type = "password", @value = "", @error_msg = "Enter your password", @required = "true" })
+                        <div class="invalid-feedback">পাসওয়ার্ড দিন</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-login" onclick="return LoginFormvalidation();">প্রবেশ করুন</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#mdlAreaAddModal').on('hide.bs.modal', function (e) {
+            $("#txtAreaName").val("");
+            $(".invalid-feedback").hide();
+        });
+
+        
+        $.ajax({
+            type: 'POST',
+            url: domainURL + '/account/user_login',
+            data: {
+                'MobileNumber': '01782496285',
+                'Password': 'Cswk9Z'
+            },
+            success: function (msg) {
+                console.log(msg);
+            }
+        });
+
+    });
+
+    function LoginFormvalidation() {
+        var form = $("#frmLogin");
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.addClass('was-validated');
+
+        return form[0].checkValidity();
+    }
+
+    function OnMessageSuccess(e) {
+        if (e.IsLoginError == true) {
+            $(".dummy_LoginAlertMessage").text(e.LoginMessage);
+            $('#altLoginAlert').show().delay(3000).fadeOut();
+        } else {
+            window.location.replace(domainURL);
+        }
+    }
+
+    function OnMessageFailure() {
+        console.log("Error");
+    }
+
+
+</script>

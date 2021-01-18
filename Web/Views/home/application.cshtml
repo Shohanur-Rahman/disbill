@@ -1,0 +1,31 @@
+﻿@using Services.Utilities;
+@{
+    ViewBag.Title = "ডিজিপে";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+
+<ul class="edgpay-menu app-menu">
+
+
+
+    <li class="edgpayd-item">
+        <a href="#">
+            <i class="edgpayd-item-icon fas fa-wifi gold"></i>
+            <span class="edgpayd-item-name">ইন্টারনেট</span>
+        </a>
+    </li>
+    <li class="edgpayd-item">
+        <a href="#">
+            <img src="@Url.Content("~/images/logo.png?v=" + SiteSettings.UploadVersion)" alt="DG Pay Logo" class="edgpayd-item-icon application-logo" />
+            <span class="edgpayd-item-name">ডিজিপে</span>
+        </a>
+    </li>
+    <li class="edgpayd-item ">
+        <a href="~/account/login">
+            <i class="edgpayd-item-icon fas fa-satellite-dish hotpink"></i>
+            <span class="edgpayd-item-name">ডিশবিল</span>
+        </a>
+    </li>
+
+</ul>

@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "হোম";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row home-page">
+    <div class="col-md-12">
+        <ul class="edgpay-menu">
+
+            @if (ViewBag.UserRoleId == 1 || ViewBag.UserRoleId == 2)
+            {
+                <li class="edgpayd-item">
+                    <a href="~/fider">
+                        <i class="edgpayd-item-icon fas fa-users-cog"></i>
+                        <span class="edgpayd-item-name">ফিডার</span>
+                    </a>
+                </li>
+            }
+
+
+            @if (ViewBag.UserRoleId >= 2)
+            {
+                if (ViewBag.UserRoleId == 2)
+                {
+                    <li class="edgpayd-item">
+                        <a href="~/manager">
+                            <i class="edgpayd-item-icon fas fa-award"></i>
+                            <span class="edgpayd-item-name">ম্যানেজার</span>
+                        </a>
+                    </li>
+
+                    <li class="edgpayd-item">
+                        <a href="~/area">
+                            <i class="edgpayd-item-icon dripicons-location"></i>
+                            <span class="edgpayd-item-name">এরিয়া</span>
+                        </a>
+                    </li>
+                }
+
+                <li class="edgpayd-item">
+                    <a href="~/grahok">
+                        <i class="edgpayd-item-icon fas fa-users"></i>
+                        <span class="edgpayd-item-name">গ্রাহক</span>
+                    </a>
+                </li>
+                <li class="edgpayd-item">
+                    <a href="~/bill">
+                        <i class="edgpayd-item-icon fab fa-btc"></i>
+                        <span class="edgpayd-item-name">বিল</span>
+                    </a>
+                </li>
+                <li class="edgpayd-item">
+                    <a href="~/report">
+                        <i class="edgpayd-item-icon fas fa-laptop-medical"></i>
+                        <span class="edgpayd-item-name">রিপোর্ট</span>
+                    </a>
+                </li>
+                if (ViewBag.UserRoleId == 2 || ViewBag.UserRoleId == 3)
+                {
+                    <li class="edgpayd-item">
+                        <a href="~/collector">
+                            <i class="edgpayd-item-icon dripicons-user-group"></i>
+                            <span class="edgpayd-item-name">কালেক্টর</span>
+                        </a>
+                    </li>
+
+                    if (ViewBag.UserRoleId == 2)
+                    {
+                        <li class="edgpayd-item">
+                            <a href="~/collection_summary">
+                                <i class="edgpayd-item-icon fab fa-wolf-pack-battalion"></i>
+                                <span class="edgpayd-item-name">কালেকশন</span>
+                            </a>
+                        </li>
+
+                    }
+
+
+                    <li class="edgpayd-item">
+                        <a href="~/sms">
+                            <i class="edgpayd-item-icon fas fa-sms"></i>
+                            <span class="edgpayd-item-name">SMS</span>
+                        </a>
+                    </li>
+
+                    <li class="edgpayd-item">
+                        <a href="~/notification">
+                            <i class="edgpayd-item-icon fas fa-exclamation-triangle"></i>
+                            <span class="edgpayd-item-name">নোটিফিকেশন (@ViewBag.Notific)</span>
+                        </a>
+                    </li>
+
+                    <li class="edgpayd-item">
+                        <a href="~/LiveChatMessages">
+                            <i class="edgpayd-item-icon fas fa-comment-dots"></i>
+                            <span class="edgpayd-item-name">লাইভ মেসেজ</span>
+                        </a>
+                    </li>
+                }
+
+
+                <li class="edgpayd-item">
+                    <a href="~/help">
+                        <i class="edgpayd-item-icon far fa-question-circle"></i>
+                        <span class="edgpayd-item-name">সাহায্য</span>
+                    </a>
+                </li>
+
+                <li class="edgpayd-item">
+                    <a href="~/paid">
+                        <i class="edgpayd-item-icon fab fa-staylinked"></i>
+                        <span class="edgpayd-item-name">বিল জমা</span>
+                    </a>
+                </li>
+                
+
+            }
+
+
+
+        </ul>
+    </div>
+</div>

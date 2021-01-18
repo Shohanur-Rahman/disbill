@@ -1,0 +1,484 @@
+﻿@model Services.Domain.dishbill.BillOperationModel
+@{
+    ViewBag.Title = "বিল সংগ্রহ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <a class="nav-link back-link" href="~/bill"><i class="fas fa-fast-backward"></i>&nbsp;বিল</a>
+    </div>
+</div>
+
+<div class="row m-t-15">
+    <div class="col-md-12">
+        <div class="modal" id="mdlManagerAddModal">
+            <div class="modal-dialog">
+                <div class="modal-content animated fadeInDown">
+                    
+                    @using (Ajax.BeginForm("SaveBillCollectInformation", "bill", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnMessageSuccess", OnFailure = "OnMessageFailure" }, new { id = "frmAddManager" }))
+                    {
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="tltManagerModelTitle">বিল সংগ্রহ</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(m => m.BillTable.GrahokId, new { @id = "hdnBillGrahokId" })
+                            <div class="form-group">
+                                <div class="dummy_customErrorMessage"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="dummy_bill_collect_profile_Text_content text-center f-16px">
+                                </div>
+                            </div>
+
+                            <div class="form-group hide-hf">
+                                <table id="tblGrahokBillHistory" class="display edgpay-data-table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>মাস</th>
+                                            <th>বিল</th>
+                                            <th>কালেক্টর</th>
+                                            <th>তারিখ</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>মাস</th>
+                                            <th>বিল</th>
+                                            <th>কালেক্টর</th>
+                                            <th>তারিখ</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtBillMonth">মাস বাছাই করুন</label>
+                                 @Html.DropDownListFor(model => model.MonthId, ViewBag.MonthNameList as SelectList, "-- মাসের নাম সিলেক্ট করুন--", new { @class = "form-control dummy_empty_grahok", @id = "txtBillMonth", title = "মাস বাছাই করুন", @required = "true" })
+                                <div class="invalid-feedback">মাস বাছাই করুন</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtBillAmount">বিল এমাউন্ট লিখুন</label>
+                                @Html.TextBoxFor(m => m.BillTable.BillAmount, new { @id = "txtBillAmount", @type = "number", @class = "form-control", maxlength = "200", placeholder = "বিল এমাউন্ট লিখুন", @title = "বিল এমাউন্ট লিখুন", @required = "true" })
+                                <div class="invalid-feedback">বিল এমাউন্ট লিখুন</div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">বন্ধ করুন</button>
+                            <button type="submit" class="btn btn-primary has-spinner" id="btnSubmitArea" onclick="return SaveAreaName();">সাবমিট</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row m-t-15">
+    <div class="col-md-12">
+        <div class="overflow-hidden mb-3">
+            <div class="form-group">
+                @Html.DropDownList("ddlAreaForFilterGrahok",
+         ViewBag.AreNameList as SelectList,
+         "-- এরিয়া সিলেক্ট করুন--",
+         new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table_row">
+            <table id="tblFreeGrahokList" class="display edgpay-data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>আইডি</th>
+                        <th>নাম</th>
+                        <th>এরিয়া</th>
+                        <th>বাড়ীওয়ালার নাম</th>
+                        <th>মোবাইল</th>
+                        <th>মাসিক ফি</th>
+                        <th>বকেয়া</th>
+                        <th>অগ্রিম</th>
+                        <th>মোট</th>
+                        <th>Active</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th>আইডি</th>
+                        <th>নাম</th>
+                        <th>এরিয়া</th>
+                        <th>বাড়ীওয়ালার নাম</th>
+                        <th>মোবাইল</th>
+                        <th>মাসিক ফি</th>
+                        <th>বকেয়া</th>
+                        <th>অগ্রিম</th>
+                        <th>মোট</th>
+                        <th>Active</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="table_loader"></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal" tabindex="-1" role="dialog" id="mdlCollectorProfile">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header profile-modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body profile-modal">
+                        <div class="w-100">
+                            <span class="colletor_avatar"><i class="fas fa-user-tie fa-5x"></i></span>
+                        </div>
+                        <div class="dummy_user_profile_Text_content text-center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#mdlManagerAddModal').on('hide.bs.modal', function (e) {
+            $("#GrahokId").val("");
+            $("form#frmAddManager")[0].reset();
+            $("#tltManagerModelTitle").text("বিল সংগ্রহ");
+            $(".invalid-feedback").hide();
+            $("#txtMobileNumber").prop('disabled', false);
+        });
+        $('#mdlCollectorProfile').on('hide.bs.modal', function (e) {
+            $(".dummy_user_profile_Text_content").html("");
+        });
+        LoadAreaDataTableData();
+
+
+        $("#ddlAreaForFilterGrahok").change(function () {
+            oTable = $('#tblFreeGrahokList').DataTable();
+            if ($("#ddlAreaForFilterGrahok option:selected").val() != "") {
+                oTable.search($("#ddlAreaForFilterGrahok option:selected").text()).draw();
+            } else {
+                $(".dataTables_filter [type=search]").val("");
+                oTable.search("").draw();
+            }
+        });
+    });
+
+    function LoadAreaDataTableData() {
+
+        $.ajax({
+            url: $.trim(domainURL + "/bill/GetAllGrahokForPayBill"),
+            method: 'GET',
+            dataType: 'json',
+            select: true,
+            success: function (data) {
+                var uRole = "@ViewBag.UserRoleId";
+
+                $('#tblFreeGrahokList').dataTable({
+                    data: data,
+                    columns: [
+                        { 'data': 'GrahokId' },
+                        { 'data': 'Name' },
+                        { 'data': 'AreaName' },
+                        { 'data': 'HouseOwnerName' },
+                        { 'data': 'MobileNumber' },
+                        { 'data': 'LineRate' },
+                        { 'data': 'total_due' },
+                        { 'data': 'AdvanceAmount' },
+                        { 'data': 'TotalAmount' },
+                        { 'data': 'IsActivated' },
+                        {
+                            "className": 'center',
+                            "data": 'Id',
+                            "render": function (data, type, row, meta) {
+                                if (row.IsActivated) {
+                                    var strData = "";
+                                    strData = strData + "<div class=dropdown><button class='btn-data-grid' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-h'></i></button>";
+                                    strData = strData + "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
+                                    strData = strData + "<a class='dropdown-item' href='javascript:void(0)' onclick='ViewCollectorProfile(" + data + ")'>প্রোফাইল দেখুন</a>";
+                                    strData = strData + "<a class='dropdown-item' href='javascript:void(0)' onclick='OpenBillCollectModal(" + data + ")'>বিল প্রদান</a>";
+
+                                    if (uRole == 2 || uRole == 3)
+                                        strData = strData + "<a class='dropdown-item' href='javascript:void(0)' onclick='DeDeactiveSelectedGrahok(" + data + ")'>বন্ধ করুন</a>";
+
+                                    strData = strData + "</div></div>";
+                                    return strData;
+
+                                } else {
+                                    var strData = "";
+                                    strData = strData + "<div class=dropdown><button class='btn-data-grid' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-h'></i></button>";
+                                    strData = strData + "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
+                                    strData = strData + "<a class='dropdown-item' href='javascript:void(0)' onclick='ViewCollectorProfile(" + data + ")'>প্রোফাইল দেখুন</a>";
+                                    strData = strData + "<a class='dropdown-item' href='javascript:void(0)' onclick='OpenBillCollectModal(" + data + ")'>বিল প্রদান</a>";
+
+                                    if (uRole == 2 || uRole == 3)
+                                        strData = strData + "<a class='dropdown-item' href='javascript:void(0)' onclick='DeActiveSelectedGrahok(" + data + ")'>সক্রিয় করুন</a>";
+
+                                    strData = strData + "</div></div>";
+                                    return strData;
+                                }
+                            }
+                        },
+
+                    ],
+                    rowCallback: function (row, data, index) {
+                        if (data.IsActivated == true) {
+                            $("td:eq(9)", row).html("<i class='fas fa-check icon-green'></i>");
+                        } else {
+                            $("td:eq(9)", row).html("<i class='fas fa-times icon-red'></i>");
+                        }
+                    },
+                    initComplete: function (settings, json) {
+                        $(".table_loader").hide();
+                    }
+
+                });
+
+
+            }
+        });
+    }
+
+
+
+
+    function ViewCollectorProfile(cltId) {
+        $.get(domainURL + "/grahok/GetGrahokTableReturnData", { grahokId: cltId }, function (grData) {
+            if (grData) {
+
+                var profileText = "";
+
+                if (grData.Name)
+                    profileText = "<h4 class='text-center'>" + grData.Name + "<h4>";
+
+                profileText += "<p>";
+
+                if (grData.CompanyName)
+                    profileText += grData.CompanyName + "<br/>";
+
+                if (grData.MobileNumber)
+                    profileText += "মোবাইলঃ " + grData.MobileNumber + "<br/>";
+
+                if (grData.LineRate != null)
+                    profileText += "মাসিক ফিঃ " + grData.LineRate + " টাকা<br/>";
+
+                if (grData.DueAmount != null)
+                    profileText += "বকেয়াঃ " + grData.total_due + " টাকা<br/>";
+
+                if (grData.House)
+                    profileText += grData.House + ", ";
+
+                if (grData.Road)
+                    profileText += grData.Road + ", ";
+
+                if (grData.PostOffice)
+                    profileText += grData.PostOffice + ", ";
+
+                if (grData.Thana)
+                    profileText += grData.Thana + ", ";
+
+                if (grData.Zila)
+                    profileText += grData.Zila + ", ";
+
+                var date = new Date(parseInt(grData.CreatedDate.substr(6)));
+
+                var formatted = date.getFullYear() + "-" +
+                      ("0" + (date.getMonth() + 1)).slice(-2) + "-" +
+                      ("0" + date.getDate()).slice(-2);
+
+                if (formatted)
+                    profileText += "<br/> <br/> সংযোগ তারিখঃ " + formatted + "<br/>  ";
+
+
+                profileText += "</p>";
+
+                $(".dummy_user_profile_Text_content").html(profileText);
+                $("#mdlCollectorProfile").modal("show");
+
+            }
+        });
+
+
+    }
+
+
+    function SaveAreaName(elem) {
+
+        var form = $("#frmAddManager");
+        $(".dummy_customErrorMessage").hide();
+        var mobileNumber = $.trim($("#txtMobileNumber").val());
+        var emailAddress = $.trim($("#txtEmail").val());
+
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.addClass('was-validated');
+        if (form[0].checkValidity() === true) {
+            $(".has-spinner").buttonLoader('start', "প্রসেসিং");
+        }
+        return form[0].checkValidity();
+    }
+
+
+    function DeDeactiveSelectedGrahok(grahokId) {
+        $(".table_loader").show();
+        $.get(domainURL + "/grahok/DeDeactiveSelectedGrahok", { grahokId: grahokId }, function (data) {
+            if (data) {
+                var table = $('#tblFreeGrahokList').DataTable();
+                table.destroy();
+                LoadAreaDataTableData();
+            }
+        });
+    }
+
+
+    function DeActiveSelectedGrahok(grahokId) {
+        $(".table_loader").show();
+        $.get(domainURL + "/grahok/DeActiveSelectedGrahok", { grahokId: grahokId }, function (data) {
+            if (data) {
+                var table = $('#tblFreeGrahokList').DataTable();
+                table.destroy();
+                LoadAreaDataTableData();
+            }
+        });
+    }
+
+    function OnMessageSuccess(event) {
+        $(".has-spinner").buttonLoader('stop');
+        if (event.isOperationSuccess == false) {
+            $(".dummy_customErrorMessage").text(event.OperationMessage);
+            $(".dummy_customErrorMessage").show();
+            return false;
+        } else {
+            $(".table_loader").show();
+            $('#mdlManagerAddModal').modal('hide');
+            var table = $('#tblFreeGrahokList').DataTable();
+            table.destroy();
+            LoadAreaDataTableData();
+        }
+
+    }
+
+    function OnMessageFailure(error) {
+        $(".has-spinner").buttonLoader('stop');
+        $(".dummy_customErrorMessage").text(error);
+        $(".dummy_customErrorMessage").show();
+        return false;
+    }
+
+    function OpenBillCollectModal(grahokId) {
+        $(".dummy_bill_collect_profile_Text_content").html("");
+        $.get(domainURL + "/grahok/GetGrahokTableReturnData", { grahokId: grahokId }, function (grData) {
+            if (grData) {
+
+                var profileText = "";
+
+                if (grData.Name)
+                    profileText = "<h4 class='text-center'>" + grData.Name + "<h4>";
+
+                profileText += "<p>";
+
+                if (grData.CompanyName)
+                    profileText += grData.CompanyName + "<br/>";
+
+                if (grData.MobileNumber)
+                    profileText += "মোবাইলঃ " + grData.MobileNumber + "<br/>";
+
+                if (grData.LineRate != null)
+                    profileText += "মাসিক ফিঃ " + grData.LineRate + " টাকা<br/>";
+
+                if (grData.DueAmount != null)
+                    profileText += "বকেয়াঃ " + grData.total_due + " টাকা<br/>";
+
+                if (grData.DueAmount != null)
+                    profileText += "অগ্রিম " + grData.AdvanceAmount + " টাকা<br/>";
+
+                if (grData.House)
+                    profileText += grData.House + ", ";
+
+                if (grData.Road)
+                    profileText += grData.Road + ", ";
+
+                if (grData.PostOffice)
+                    profileText += grData.PostOffice + ", ";
+
+                if (grData.Thana)
+                    profileText += grData.Thana + ", ";
+
+                if (grData.Zila)
+                    profileText += grData.Zila + ", ";
+
+                var date = new Date(parseInt(grData.CreatedDate.substr(6)));
+
+                var formatted = date.getFullYear() + "-" +
+                      ("0" + (date.getMonth() + 1)).slice(-2) + "-" +
+                      ("0" + date.getDate()).slice(-2);
+
+                if (formatted)
+                    profileText += "<br/> সংযোগ তারিখঃ " + formatted + "<br/>  ";
+
+
+                profileText += "</p>";
+
+                $(".dummy_bill_collect_profile_Text_content").html(profileText);
+                $("#hdnBillGrahokId").val(grahokId);
+                $("#txtBillMonth").val(parseInt('@ViewBag.ThisMonth'));
+
+                LoadBillHistoryData(grahokId);
+            }
+        });
+    }
+
+
+    function LoadBillHistoryData(grahokId) {
+        var billHistoryURL = $.trim(domainURL + "/bill/GetGrahokBillHistory/" + grahokId);
+        var table = $('#tblGrahokBillHistory').DataTable();
+        table.destroy();
+        $.ajax({
+            url: billHistoryURL,
+            data: { 'grahokId': grahokId },
+            method: 'GET',
+            dataType: 'json',
+            select: true,
+            success: function (billHistory) {
+
+                $('#tblGrahokBillHistory').dataTable({
+                    data: billHistory,
+                    columns: [
+                        { 'data': 'BillDate' },
+                        { 'data': 'BillAmount' },
+                        { 'data': 'Collector' },
+                        { 'data': 'CollectDate' },
+                    ],
+                });
+                $('#mdlManagerAddModal').modal('show');
+            }
+        });
+    }
+
+
+</script>

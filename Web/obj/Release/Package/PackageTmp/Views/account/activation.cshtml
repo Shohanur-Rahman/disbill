@@ -1,0 +1,84 @@
+﻿@using Services.Domain.Models.User.EditorModel
+@model LoginModel
+@{
+    ViewBag.Title = "activation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-container col1-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <article class="col-main">
+                    <div class="account-login">
+                        <div class="page-title">
+                            <input type="hidden" id="hdnActivateKeyId" value="@ViewBag.ActiveKey" />
+                            <h2>Active your account</h2>
+                        </div>
+                        <fieldset class="col2-set">
+                            <div class="col-1 new-users">
+                                <div class="content">
+                                    <p>You are temporary customer. Login your account for active</p>
+                                </div>
+                            </div>
+                            <div class="col-2 registered-users">
+                                <strong>Registered Customers</strong>
+                                <div class="content">
+                                    @if (ViewBag.Duration > 30)
+                                    {
+                                        <h3 class="text-warning">Your Link Has Been Expeired.</h3>
+                                        <button type="button" onclick="ResendActiveKey()" class="btn btn-primary">Resend</button>
+                                    }
+                                    else
+                                    {
+
+                                        using (Html.BeginForm("ProcessNewUserLogin", "account", FormMethod.Post, new { @class = "form-horizontal", role = "form", autocomplete = "off" }))
+                                        {
+                                            @Html.HiddenFor(m => m.UserActivateKey,new { @Value= ViewBag.ActiveKey })
+                                            <p>If you have an account with us, please log in.</p>
+                                            <ul class="form-list">
+                                                <li>
+                                                    <label for="email">Email Address <span class="required">*</span></label>
+                                                    @Html.TextBoxFor(m => m.EmailAddress, new { @class = "input-text required-entry", title = "Email Address", @value = "" })
+                                                </li>
+                                                <li>
+                                                    <label for="pass">Password <span class="required">*</span></label>
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "input-text required-entry validate-password", title = "Password", @type = "password", @value = "" })
+                                                </li>
+                                            </ul>
+                                            <p class="required">* Required Fields</p>
+                                            <div class="buttons-set">
+                                                <button id="send2" name="send" type="submit" class="button login"><span>Login</span></button>
+                                            </div>
+                                        }
+                                    }
+                                    
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </article>
+                <!--	///*///======    End article  ========= //*/// -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function ResendActiveKey() {
+
+        var actKey = $.trim($("#hdnActivateKeyId").val());
+        $.get("/account/ResendActivateKey/", { key: actKey }, function (data) {
+            if (data) {
+                
+            } else {
+                
+            }
+        });
+
+    }
+
+
+</script>

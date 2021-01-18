@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Release\Package\PackageTmp" />
+  <setAcl path="F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <setAcl path="F:\PC_COPY\new-projects\DishBill (2)\DishBill\Web\obj\Release\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
+</sitemanifest>

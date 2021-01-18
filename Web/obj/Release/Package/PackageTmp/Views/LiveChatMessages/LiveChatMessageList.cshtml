@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Live Chat Messages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="tblFreeGrahokList" class="display edgpay-data-table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Conversation Id</th>
+                    <th>Unread Message</th>
+                    <th>Reply</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (var itemCount = 0; itemCount < ViewBag.AllLiveMessage.Count; itemCount++)
+                {
+
+                    <tr>
+                        <td>@ViewBag.AllLiveMessage[itemCount].IP_Address</td>
+                        <td>@ViewBag.AllLiveMessage[itemCount].TotalUnRead</td>
+                        <td>
+                            <a href="~/LiveChatMessages/ReplyMessage?id=@ViewBag.AllLiveMessage[itemCount].IP_Address&rid=@ViewBag.AllLiveMessage[itemCount].receiverid" class="btn bg-purple waves-effect hover-expand-effect" title="Edit"><i class="material-icons">reply_all</i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+
+
+            <tfoot>
+                <tr>
+                    <th>Conversation Id</th>
+                    <th>Unread Message</th>
+                    <th>Reply</th>
+                </tr>
+
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".dummy_liveChat_link").addClass("active");
+    })
+
+
+
+
+</script>

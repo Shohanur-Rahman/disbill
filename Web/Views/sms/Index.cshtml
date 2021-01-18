@@ -1,0 +1,670 @@
+﻿@model Services.Domain.dishbill.SMSOperationModel
+@{
+    ViewBag.Title = "SMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col">
+            <button type="button" class="btn btn-primary mb-3" onclick="OpenAllSMSSendModal('grk')">গ্রাহকদেরকে SMS করুন</button>
+            <button type="button" class="btn btn-primary mb-3" onclick="OpenAllSMSSendModal('clt')">কালেক্টরদের SMS করুন</button>
+            @if (ViewBag.UserRoleId == 2)
+            {
+                <button type="button" class="btn btn-primary mb-3" onclick="OpenAllSMSSendModal('mng')">ম্যানেজারকে SMS করুন</button>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">গ্রাহক</a>
+                <a class="nav-item nav-link" id="nav-free-grahok-tab" data-toggle="tab" href="#nav-free-grahok" role="tab" aria-controls="nav-free-grahok" aria-selected="true">ফ্রি গ্রাহক</a>
+                <a class="nav-item nav-link" id="nav-deactive-grahok-tab" data-toggle="tab" href="#nav-deactive-grahok" role="tab" aria-controls="nav-deactive-grahok" aria-selected="true">বন্ধ গ্রাহক</a>
+                <a class="nav-item nav-link" id="nav-active-grahok-tab" data-toggle="tab" href="#nav-active-grahok" role="tab" aria-controls="nav-home" aria-selected="true">সক্রিয় গ্রাহক</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">ম্যানেজার</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">কালেক্টর</a>
+            </div>
+        </nav>
+        <div class="tab-content py-3 px-3 px-sm-0 col-md-12" id="nav-tabContent">
+
+            <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary mb-3" onclick="SendSMSToGrahok()">সেন্ড করুন</button>
+                    <span class="dummy_grahok_message" style="display: none; background: orange; color: #fff; text-align: center;"></span>
+                </div>
+                <div class="col-md-12">
+                    <table id="tblGrahokList" class="display edgpay-data-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.GrahokList != null && ViewBag.GrahokList.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.GrahokList.Count; i++)
+                                {
+                                    <tr class="selected_grahok">
+                                        <td></td>
+                                        <td>@ViewBag.GrahokList[i].GrahokId</td>
+                                        <td>@ViewBag.GrahokList[i].Name</td>
+                                        <td>@ViewBag.GrahokList[i].HouseOwnerName</td>
+                                        <td class="mobile">@ViewBag.GrahokList[i].MobileNumber</td>
+                                        <td>@ViewBag.GrahokList[i].LineRate</td>
+                                        <td>@ViewBag.GrahokList[i].DueAmount</td>
+                                        <td>@ViewBag.GrahokList[i].AdvanceAmount</td>
+                                    </tr>
+                                }
+                            }
+
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="nav-free-grahok" role="tabpanel" aria-labelledby="nav-free-grahok-tab">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary mb-3" onclick="SendSMSToFreeGrahok()">সেন্ড করুন</button>
+                    <span class="dummy__free_grahok_message" style="display: none; background: orange; color: #fff; text-align: center;"></span>
+                </div>
+                <div class="col-md-12">
+                    <table id="tblFreeGrahokList" class="display edgpay-data-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.FreeGrahok != null && ViewBag.FreeGrahok.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.FreeGrahok.Count; i++)
+                                {
+                                    <tr class="selected_free_grahok">
+                                        <td></td>
+                                        <td>@ViewBag.FreeGrahok[i].GrahokId</td>
+                                        <td>@ViewBag.FreeGrahok[i].Name</td>
+                                        <td>@ViewBag.FreeGrahok[i].HouseOwnerName</td>
+                                        <td class="mobile">@ViewBag.FreeGrahok[i].MobileNumber</td>
+                                        <td>@ViewBag.FreeGrahok[i].LineRate</td>
+                                        <td>@ViewBag.FreeGrahok[i].DueAmount</td>
+                                        <td>@ViewBag.FreeGrahok[i].AdvanceAmount</td>
+                                    </tr>
+                                }
+                            }
+
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="nav-deactive-grahok" role="tabpanel" aria-labelledby="nav-deactive-grahok-tab">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary mb-3" onclick="SendSMSToDeActiveGrahok()">সেন্ড করুন</button>
+                    <span class="dummy__deactive_grahok_message" style="display: none; background: orange; color: #fff; text-align: center;"></span>
+                </div>
+                <div class="col-md-12">
+                    <table id="tblDeActiveGrahokList" class="display edgpay-data-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.DeActiveGrahok != null && ViewBag.DeActiveGrahok.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.DeActiveGrahok.Count; i++)
+                                {
+                                    <tr class="selected_deactive_grahok">
+                                        <td></td>
+                                        <td>@ViewBag.DeActiveGrahok[i].GrahokId</td>
+                                        <td>@ViewBag.DeActiveGrahok[i].Name</td>
+                                        <td>@ViewBag.DeActiveGrahok[i].HouseOwnerName</td>
+                                        <td class="mobile">@ViewBag.DeActiveGrahok[i].MobileNumber</td>
+                                        <td>@ViewBag.DeActiveGrahok[i].LineRate</td>
+                                        <td>@ViewBag.DeActiveGrahok[i].DueAmount</td>
+                                        <td>@ViewBag.DeActiveGrahok[i].AdvanceAmount</td>
+                                    </tr>
+                                }
+                            }
+
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="nav-active-grahok" role="tabpanel" aria-labelledby="nav-active-grahok-tab">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary mb-3" onclick="SendSMSToActiveGrahok()">সেন্ড করুন</button>
+                    <span class="dummy__active_grahok_message" style="display: none; background: orange; color: #fff; text-align: center;"></span>
+                </div>
+                <div class="col-md-12">
+                    <table id="tblActiveGrahokList" class="display edgpay-data-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.ActiveGrahok != null && ViewBag.ActiveGrahok.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.ActiveGrahok.Count; i++)
+                                {
+                                    <tr class="selected_active_grahok">
+                                        <td></td>
+                                        <td>@ViewBag.ActiveGrahok[i].GrahokId</td>
+                                        <td>@ViewBag.ActiveGrahok[i].Name</td>
+                                        <td>@ViewBag.ActiveGrahok[i].HouseOwnerName</td>
+                                        <td class="mobile">@ViewBag.ActiveGrahok[i].MobileNumber</td>
+                                        <td>@ViewBag.ActiveGrahok[i].LineRate</td>
+                                        <td>@ViewBag.ActiveGrahok[i].DueAmount</td>
+                                        <td>@ViewBag.ActiveGrahok[i].AdvanceAmount</td>
+                                    </tr>
+                                }
+                            }
+
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>আইডি</th>
+                                <th>নাম</th>
+                                <th>বাড়ীওয়ালার নাম</th>
+                                <th>মোবাইল</th>
+                                <th>মাসিক ফি</th>
+                                <th>বকেয়া</th>
+                                <th>অ্যাডভান্স</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="tab-pane" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary mb-3" onclick="SendSMSToManager()">সেন্ড করুন</button>
+                    <span class="dummy_manager_message" style="display: none; background: orange; color: #fff; text-align: center;"></span>
+                </div>
+                <div class="col-md-12">
+                    <table id="tblManagerList" class="display edgpay-data-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>নাম</th>
+                                <th>মোবাইল</th>
+                                <th>ইমেল</th>
+                                <th>বাড়ি</th>
+                                <th>রোড</th>
+                                <th>পোস্ট</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.ManagerList != null && ViewBag.ManagerList.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.ManagerList.Count; i++)
+                                {
+                                    <tr class="selected_manager">
+                                        <td></td>
+                                        <td>@ViewBag.ManagerList[i].Name</td>
+                                        <td class="mobile">@ViewBag.ManagerList[i].MobileNumber</td>
+                                        <td>@ViewBag.ManagerList[i].Email</td>
+                                        <td>@ViewBag.ManagerList[i].House</td>
+                                        <td>@ViewBag.ManagerList[i].Road</td>
+                                        <td>@ViewBag.ManagerList[i].PostOffice</td>
+                                    </tr>
+                                }
+                            }
+
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>নাম</th>
+                                <th>মোবাইল</th>
+                                <th>ইমেল</th>
+                                <th>বাড়ি</th>
+                                <th>রোড</th>
+                                <th>পোস্ট</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary mb-3" onclick="SendSMSToCollector()">সেন্ড করুন</button>
+                    <span class="dummy_collector_message" style="display: none; background: orange; color: #fff; text-align: center;"></span>
+                </div>
+                <div class="col-md-12">
+                    <table id="tblCollectorList" class="display edgpay-data-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>নাম</th>
+                                <th>মোবাইল</th>
+                                <th>ইমেল</th>
+                                <th>বাড়ি</th>
+                                <th>রোড</th>
+                                <th>পোস্ট</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.CollectorList != null && ViewBag.CollectorList.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.CollectorList.Count; i++)
+                                {
+                                    <tr class="selected_collector">
+                                        <td></td>
+                                        <td>@ViewBag.CollectorList[i].Name</td>
+                                        <td class="mobile">@ViewBag.CollectorList[i].MobileNumber</td>
+                                        <td>@ViewBag.CollectorList[i].Email</td>
+                                        <td>@ViewBag.CollectorList[i].House</td>
+                                        <td>@ViewBag.CollectorList[i].Road</td>
+                                        <td>@ViewBag.CollectorList[i].PostOffice</td>
+                                    </tr>
+                                }
+                            }
+
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>নাম</th>
+                                <th>মোবাইল</th>
+                                <th>ইমেল</th>
+                                <th>বাড়ি</th>
+                                <th>রোড</th>
+                                <th>পোস্ট</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="mdlSendSMStoAllGrahok">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeInDown">
+            @using (Ajax.BeginForm("SendSMSToAllUser", "sms", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSMSSuccess", OnFailure = "OnSMSFailure" }, new { id = "frmSendSMS" }))
+            {
+                <div class="modal-header">
+                    <h4 class="modal-title">SMS করুন</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(m => m.GrahokId, new { @id = "dummy_SMS_Grahok_Id", @class = "dummy_sms_clear" })
+                    @Html.HiddenFor(m => m.UserId, new { @id = "dummy_SMS_User_Id", @class = "dummy_sms_clear" })
+                    @Html.HiddenFor(m => m.SendMode, new { @id = "dummy_SMS_send_mode", @class = "dummy_sms_clear" })
+                    @Html.HiddenFor(m => m.MobileNumberList, new { @id = "dummy_mobile_number_list", @class = "dummy_sms_clear" })
+                    <div class="form-group">
+                        <div class="dummy_customErrorMessage"></div>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(m => m.Message.message, new { @id = "txtMessage", @class = "form-control dummy_sms_clear", maxlength = "200", placeholder = "মেসেজ লিখুন", @title = "মেসেজ লিখুন", @required = "true" })
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">বন্ধ করুন</button>
+                    <button type="submit" class="btn btn-primary has-spinner" id="btnSendSMS" onclick="return SendSMSToUser();">সেন্ড করুন </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('#mdlSendSMStoAllGrahok').on('hide.bs.modal', function (e) {
+            $(".dummy_sms_clear").val("");
+        });
+
+
+        $('#tblGrahokList').DataTable({
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            order: [[1, 'asc']]
+        });
+
+
+        $('#tblManagerList').DataTable({
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            order: [[1, 'asc']]
+        });
+
+
+        $('#tblCollectorList').DataTable({
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            order: [[1, 'asc']]
+        });
+
+
+        $('#tblFreeGrahokList').DataTable({
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            order: [[1, 'asc']]
+        });
+
+
+        $('#tblDeActiveGrahokList').DataTable({
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            order: [[1, 'asc']]
+        });
+
+
+        $('#tblActiveGrahokList').DataTable({
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            order: [[1, 'asc']]
+        });
+
+
+    });
+
+
+    function SendSMSToUser() {
+        
+        var form = $("#frmSendSMS");
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.addClass('was-validated');
+        if (form[0].checkValidity() === true) {
+            $(".has-spinner").buttonLoader('start', "প্রসেসিং");
+        }
+
+        return form[0].checkValidity();
+    }
+    
+
+    function SendSMSToGrahok() {
+        var mobileNo = "";
+        $(".dummy_sms_clear").val("");
+        $(".selected_grahok.selected").each(function () {
+            var mb= $.trim($(this).find("td.mobile").text());
+            if (mobileNo == "")
+                mobileNo = mb;
+            else
+                mobileNo += ", " + mb;
+        });
+
+        if (mobileNo == "") {
+            $(".dummy_grahok_message").text("কমপক্ষে এক জন গ্রাহক সিলেক্ট করুন।");
+            $(".dummy_grahok_message").show().delay(2000).fadeOut();
+            return false;
+        }
+
+        $("#dummy_SMS_send_mode").val("ag");
+        $("#dummy_mobile_number_list").val(mobileNo);
+        $('#mdlSendSMStoAllGrahok').modal('show');
+
+    }
+
+
+
+    function SendSMSToFreeGrahok() {
+        var mobileNo = "";
+        $(".dummy_sms_clear").val("");
+        $(".selected_free_grahok.selected").each(function () {
+            var mb = $.trim($(this).find("td.mobile").text());
+            if (mobileNo == "")
+                mobileNo = mb;
+            else
+                mobileNo += ", " + mb;
+        });
+
+        if (mobileNo == "") {
+            $(".dummy__free_grahok_message").text("কমপক্ষে এক জন গ্রাহক সিলেক্ট করুন।");
+            $(".dummy__free_grahok_message").show().delay(2000).fadeOut();
+            return false;
+        }
+
+        $("#dummy_SMS_send_mode").val("ag");
+        $("#dummy_mobile_number_list").val(mobileNo);
+        $('#mdlSendSMStoAllGrahok').modal('show');
+
+    }
+
+
+
+    function SendSMSToDeActiveGrahok() {
+        var mobileNo = "";
+        $(".dummy_sms_clear").val("");
+        $(".selected_deactive_grahok.selected").each(function () {
+            var mb = $.trim($(this).find("td.mobile").text());
+            if (mobileNo == "")
+                mobileNo = mb;
+            else
+                mobileNo += ", " + mb;
+        });
+
+        if (mobileNo == "") {
+            $(".dummy__deactive_grahok_message").text("কমপক্ষে এক জন গ্রাহক সিলেক্ট করুন।");
+            $(".dummy__deactive_grahok_message").show().delay(2000).fadeOut();
+            return false;
+        }
+
+        $("#dummy_SMS_send_mode").val("ag");
+        $("#dummy_mobile_number_list").val(mobileNo);
+        $('#mdlSendSMStoAllGrahok').modal('show');
+
+    }
+
+
+
+
+    function SendSMSToActiveGrahok() {
+        var mobileNo = "";
+        $(".dummy_sms_clear").val("");
+        $(".selected_active_grahok.selected").each(function () {
+            var mb = $.trim($(this).find("td.mobile").text());
+            if (mobileNo == "")
+                mobileNo = mb;
+            else
+                mobileNo += ", " + mb;
+        });
+
+        if (mobileNo == "") {
+            $(".dummy__active_grahok_message").text("কমপক্ষে এক জন গ্রাহক সিলেক্ট করুন।");
+            $(".dummy__active_grahok_message").show().delay(2000).fadeOut();
+            return false;
+        }
+
+        $("#dummy_SMS_send_mode").val("ag");
+        $("#dummy_mobile_number_list").val(mobileNo);
+        $('#mdlSendSMStoAllGrahok').modal('show');
+
+    }
+
+
+    function SendSMSToManager() {
+        var mobileNo = "";
+        $(".dummy_sms_clear").val("");
+        $(".selected_manager.selected").each(function () {
+            var mb = $.trim($(this).find("td.mobile").text());
+            if (mobileNo == "")
+                mobileNo = mb;
+            else
+                mobileNo += ", " + mb;
+        });
+
+        if (mobileNo == "") {
+            $(".dummy_manager_message").text("কমপক্ষে এক জন ম্যানেজার সিলেক্ট করুন।");
+            $(".dummy_manager_message").show().delay(2000).fadeOut();
+            return false;
+        }
+
+        $("#dummy_SMS_send_mode").val("ag");
+        $("#dummy_mobile_number_list").val(mobileNo);
+        $('#mdlSendSMStoAllGrahok').modal('show');
+
+    }
+
+
+    function SendSMSToCollector() {
+        var mobileNo = "";
+        $(".dummy_sms_clear").val("");
+        $(".selected_collector.selected").each(function () {
+            var mb = $.trim($(this).find("td.mobile").text());
+            if (mobileNo == "")
+                mobileNo = mb;
+            else
+                mobileNo += ", " + mb;
+        });
+
+        if (mobileNo == "") {
+            $(".dummy_collector_message").text("কমপক্ষে এক জন কালেক্টর সিলেক্ট করুন।");
+            $(".dummy_collector_message").show().delay(2000).fadeOut();
+            return false;
+        }
+
+        $("#dummy_SMS_send_mode").val("ag");
+        $("#dummy_mobile_number_list").val(mobileNo);
+        $('#mdlSendSMStoAllGrahok').modal('show');
+
+    }
+
+
+
+    function OnSMSSuccess(event) {
+        $(".has-spinner").buttonLoader('stop');
+        $(".dummy_sms_sent_message").text(event.OperationMessage);
+        $(".dummy_sms_sent_message").show().delay(2000).fadeOut();
+        $('#mdlSendSMStoAllGrahok').modal('hide');
+    }
+
+    function OnSMSFailure() {
+        $(".has-spinner").buttonLoader('stop');
+        $(".dummy_sms_sent_message").text("Error occured.");
+        $(".dummy_sms_sent_message").show().delay(2000).fadeOut();
+        $('#mdlSendSMStoAllGrahok').modal('hide');
+    }
+    function OpenAllSMSSendModal(mValue) {
+        $(".dummy_sms_clear").val("");
+        $("#dummy_SMS_send_mode").val(mValue);
+        $('#mdlSendSMStoAllGrahok').modal('show');
+    }
+
+
+</script>

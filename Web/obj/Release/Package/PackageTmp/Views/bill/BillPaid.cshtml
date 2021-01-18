@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "পরিশোধ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <a class="nav-link back-link" href="~/bill"><i class="fas fa-fast-backward"></i>&nbsp;বিল</a>
+    </div>
+</div>
+<div class="row m-t-15">
+    <div class="col-md-12">
+        <div class="overflow-hidden mb-3">
+            <div class="form-group">
+                @Html.DropDownList("ddlAreaForFilterGrahok",
+         ViewBag.AreNameList as SelectList,
+         "-- এরিয়া সিলেক্ট করুন--",
+         new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table_row">
+            <table id="tblFreeGrahokList" class="display edgpay-data-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>আইডি</th>
+                        <th>নাম</th>
+                        <th>এরিয়া</th>
+                        <th>বাড়ীওয়ালার নাম</th>
+                        <th>মোবাইল</th>
+                        <th>মাসিক ফি</th>
+                        <th>বকেয়া</th>
+                        <th>অগ্রিম</th>
+                        <th>মোট</th>
+                        <th>পরিশোধ</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th>আইডি</th>
+                        <th>নাম</th>
+                        <th>এরিয়া</th>
+                        <th>বাড়ীওয়ালার নাম</th>
+                        <th>মোবাইল</th>
+                        <th>মাসিক ফি</th>
+                        <th>বকেয়া</th>
+                        <th>অগ্রিম</th>
+                        <th>মোট</th>
+                        <th>পরিশোধ</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="table_loader"></div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        LoadAreaDataTableData();
+
+        $("#ddlAreaForFilterGrahok").change(function () {
+            
+            oTable = $('#tblFreeGrahokList').DataTable();
+            if ($("#ddlAreaForFilterGrahok option:selected").val() != "") {
+                oTable.search($("#ddlAreaForFilterGrahok option:selected").text()).draw();
+            } else {
+                $(".dataTables_filter [type=search]").val("");
+                oTable.search("").draw();
+            }
+        });
+
+    })
+
+
+    function LoadAreaDataTableData() {
+
+        $.ajax({
+            url: $.trim(domainURL + "/bill/GetAllBillPaidGrahokThisMonth"),
+            method: 'GET',
+            dataType: 'json',
+            select: true,
+            success: function (data) {
+                $('#tblFreeGrahokList').dataTable({
+                    data: data,
+                    columns: [
+                        { 'data': 'GrahokId' },
+                        { 'data': 'Name' },
+                        { 'data': 'AreaName' },
+                        { 'data': 'HouseOwnerName' },
+                        { 'data': 'MobileNumber' },
+                        { 'data': 'LineRate' },
+                        { 'data': 'total_due' },
+                        { 'data': 'AdvanceAmount' },
+                        { 'data': 'TotalAmount' },
+                        { 'data': 'paid_date' },
+
+                    ],
+                    initComplete: function (settings, json) {
+                        $(".table_loader").hide();
+                    }
+
+                });
+
+
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,291 @@
+﻿@{
+    ViewBag.Title = "রিপোর্ট";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <a class="nav-link back-link" href="~/"><i class="fas fa-fast-backward"></i>&nbsp;হোম</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-header today-report">
+                আজকের রিপোর্ট
+            </div>
+            <div class="card-body">
+                <p class="font-weight-bold mb-0">মোট গ্রাহক: @ViewBag.DailyBillHistory.TotalColelction</p>
+                <p class="font-weight-bold mb-0">
+                    মোট সংগ্রহ:
+                    @if (ViewBag.DailyBillHistory.BillAmount == null)
+                    {
+                        <span>0</span>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.DailyBillHistory.BillAmount</span>
+                    } টাকা
+                </p>
+                <p class="font-weight-bold mb-0">
+                    মোট বাকী:
+                    @if (ViewBag.DailyBillHistory.DueAmount == null)
+                    {
+                        <span>0</span>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.DailyBillHistory.DueAmount</span>
+                    }
+                    টাকা
+                </p>
+                <p class="font-weight-bold mb-0">
+                    অ্যাডভান্স:
+                    @if (ViewBag.DailyBillHistory.Advance == null)
+                    {
+                        <span>0</span>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.DailyBillHistory.Advance</span>
+                    }
+                    টাকা
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card report-card">
+            <div class="card-header monthly-report">
+                মাসের রিপোর্ট
+            </div>
+            <div class="card-body">
+                <p class="font-weight-bold mb-0">মোট গ্রাহক: @ViewBag.MonthlyBillHistory.TotalColelction</p>
+                <p class="font-weight-bold mb-0">
+                    মোট সংগ্রহ:
+                    @if (ViewBag.MonthlyBillHistory.BillAmount == null)
+                    {
+                        <span>0</span>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.MonthlyBillHistory.BillAmount</span>
+                    }
+                    টাকা
+                </p>
+                <p class="font-weight-bold mb-0">
+                    মোট বাকী:
+                    @if (ViewBag.MonthlyBillHistory.DueAmount == null)
+                    {
+                        <span>0</span>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.MonthlyBillHistory.DueAmount</span>
+                    }
+                    টাকা
+                </p>
+                <p class="font-weight-bold mb-0">
+                    অ্যাডভান্স:
+                    @if (ViewBag.MonthlyBillHistory.Advance == null)
+                    {
+                        <span>0</span>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.MonthlyBillHistory.Advance</span>
+                    }
+                    টাকা
+                </p>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.SearchResultHistory != null)
+    {
+        <div class="col-md-4">
+            <div class="card report-card">
+                <div class="card-header today-report">
+                    সার্চ রিপোর্ট (@ViewBag.ManagerName @ViewBag.CollectorName)
+                </div>
+                <div class="card-body">
+                    <p class="font-weight-bold mb-0">মোট গ্রাহক: @ViewBag.SearchResultHistory.TotalColelction</p>
+                    <p class="font-weight-bold mb-0">
+                        মোট সংগ্রহ:
+                        @if (ViewBag.SearchResultHistory.BillAmount == null)
+                        {
+                            <span>0</span>
+                        }
+                        else
+                        {
+                            <span>@ViewBag.SearchResultHistory.BillAmount</span>
+                        }
+                        টাকা
+                    </p>
+                    <p class="font-weight-bold mb-0">
+                        মোট বাকী:
+                        @if (ViewBag.SearchResultHistory.DueAmount == null)
+                        {
+                            <span>0</span>
+                        }
+                        else
+                        {
+                            <span>@ViewBag.SearchResultHistory.DueAmount</span>
+                        }
+                        টাকা
+                    </p>
+                    <p class="font-weight-bold mb-0">
+                        অ্যাডভান্স:
+                        @if (ViewBag.SearchResultHistory.Advance == null)
+                        {
+                            <span>0</span>
+                        }
+                        else
+                        {
+                            <span>@ViewBag.SearchResultHistory.Advance</span>
+                        }
+                        টাকা
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    <div class="col-md-12 m-t-15">
+        <div class="card report-card">
+            <div class="card-header today-report">
+                রিপোর্ট খুজুন
+            </div>
+            <div class="card-body">
+                <form class="form-inline">
+                    <input type="hidden" name="mngName" id="hdnMngName" />
+                    <input type="hidden" name="cltName" id="hdnCltName" />
+                    <div class="form-group mx-2">
+                        <label for="txtStartDate" class="mx-2">শুরু</label>
+                        <input type="date" class="form-control mb-2" id="txtStartDate" name="start" value="@ViewBag.StartDate" required>
+                    </div>
+                    <div class="form-group mx-2">
+                        <label for="txtEndDate" class="mx-2">শেষ</label>
+                        <input type="date" class="form-control" id="txtEndDate" name="end" value="@ViewBag.EndDate" required>
+                    </div>
+                    <div class="form-group mx-2">
+                        <label for="txtEndDate" class="mx-2">&nbsp;</label>
+                        @if (ViewBag.RoleId == 2)
+                        {
+                            @Html.DropDownList("mngId",
+                        ViewBag.CollectorList as SelectList,
+                        "-- ম্যানেজার সিলেক্ট করুন--",
+                        new { @class = "form-control", name = "cltId", @Value = ViewBag.CollectorId })
+                        }
+                        else if(ViewBag.RoleId == 3)
+                        {
+                            @Html.DropDownList("cltId",
+                        ViewBag.CollectorList as SelectList,
+                        "-- কালেক্টর সিলেক্ট করুন--",
+                        new { @class = "form-control", id = "ddlCollector" })
+                        }
+
+                    </div>
+                    @if (ViewBag.RoleId == 2)
+                    {
+                        <div class="form-group mx-2">
+                            <select id="ddlCollector" name="cltId" class="form-control">
+                                <option value="">-- কালেক্টর সিলেক্ট করুন--</option>
+                            </select>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary mb-2 btn-filter">দেখুন</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="row m-t-15">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <table id="data-table" class="display edgpay-data-table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>গ্রাহক</th>
+                            <th>সংগ্রহের তারিখ</th>
+                            <th>মাস</th>
+                            <th>বিল</th>
+                            <th>অগ্রিম</th>
+                            <th>কালেক্টর</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>গ্রাহক</th>
+                            <th>সংগ্রহের তারিখ</th>
+                            <th>মাস</th>
+                            <th>বিল</th>
+                            <th>অগ্রিম</th>
+                            <th>কালেক্টর</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @if (ViewBag.DataHistory != null && ViewBag.DataHistory.Count > 0)
+                        {
+                            for (int item = 0; item < ViewBag.DataHistory.Count; item++)
+                            {
+                                <tr>
+                                    <td>@ViewBag.DataHistory[item].Grahok</td>
+                                    <td>@ViewBag.DataHistory[item].CollecDate</td>
+                                    <td>@ViewBag.DataHistory[item].BillMonth</td>
+                                    <td>@ViewBag.DataHistory[item].BillAmount</td>
+                                    <td>@ViewBag.DataHistory[item].AdvanceAmount</td>
+                                    <td>@ViewBag.DataHistory[item].Collector</td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#mngId').on('change', function () {
+            var cltSelectedId = $.trim($(this).val());
+            if (cltSelectedId) {
+                $("#hdnMngName").val($.trim($("#mngId option:selected").text()));
+                $.get(domainURL + "/report/GetCollectorListByManagerId", { userId: cltSelectedId }, function (collector) {
+                    $("#ddlCollector").empty();
+                    $("#ddlCollector").append('<option value="">-- কালেক্টর সিলেক্ট করুন--</option>');
+                    if (collector) {
+                        for (i = 0; i < collector.length; i++) {
+                            $("#ddlCollector").append('<option value="' + collector[i].Id + '">' + collector[i].Name + '</option>');
+                        }
+                    }
+                });
+            } else {
+                $("#ddlCollector").empty();
+                $("#ddlCollector").append('<option value="">-- কালেক্টর সিলেক্ট করুন--</option>');
+            }
+
+        });
+
+
+        $('#ddlCollector').on('change', function () {
+            $("#hdnCltName").val($.trim($("#ddlCollector option:selected").text()));
+        });
+
+    });
+
+
+</script>

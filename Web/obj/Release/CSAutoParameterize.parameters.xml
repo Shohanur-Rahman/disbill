@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=sql5069.site4now.net;Integrated Security=False;Initial Catalog=DB_A6BC6F_dishbill;User Id=DB_A6BC6F_dishbill_admin;Password=DishBill25;Connect Timeout=300;Encrypt=False;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\PC_COPY\\new-projects\\DishBill\ \(2\)\\DishBill\\Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

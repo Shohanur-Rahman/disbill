@@ -1,0 +1,33 @@
+﻿
+#day-mode .side-nav-wrapper .sideBox-item a.currentPage {
+    color: #fff;
+}
+
+#day-mode .side-nav {
+    background: linear-gradient(to right,#6a0dad,#006600);
+}
+
+#day-mode .side-nav-wrapper .sideBox-item a {
+    color: #fff;
+    font-size: 20px;
+}
+
+    #day-mode .side-nav-wrapper .sideBox-item a:hover, #day-mode .side-nav-wrapper .sideBox-item a.dropdown-item {
+        color: #6a0dad;
+    }
+
+.edgpay-data-table thead tr th,.edgpay-data-table tfoot tr th {
+    background: #6a0dad;
+    padding: 8px;
+    color: #dfdfdf !important;
+}
+table.dataTable tbody tr td {
+    padding: 4px 20px;
+}
+table.dataTable tbody tr:nth-child(odd) {
+    background: #ddd;
+}
+
+table.dataTable {
+    border: 8px solid #6a0dad;
+}
